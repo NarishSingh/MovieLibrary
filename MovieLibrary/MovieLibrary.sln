@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieLibrary.UI", "MovieLibrary.UI\MovieLibrary.UI.csproj", "{F9C1D641-608C-4F0A-94AB-D00E46636EBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieLibrary.Models", "MovieLibrary.Models\MovieLibrary.Models.csproj", "{13822266-363A-4A71-B349-D5CDF160BD08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieLibrary.Data", "MovieLibrary.Data\MovieLibrary.Data.csproj", "{31EACE51-F970-47DD-8D41-3F9ED8EDC8A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieLibrary.Test", "MovieLibrary.Test\MovieLibrary.Test.csproj", "{785D41DD-8B24-4019-9DCD-9AF053D819DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{F9C1D641-608C-4F0A-94AB-D00E46636EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9C1D641-608C-4F0A-94AB-D00E46636EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9C1D641-608C-4F0A-94AB-D00E46636EBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13822266-363A-4A71-B349-D5CDF160BD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13822266-363A-4A71-B349-D5CDF160BD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13822266-363A-4A71-B349-D5CDF160BD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13822266-363A-4A71-B349-D5CDF160BD08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31EACE51-F970-47DD-8D41-3F9ED8EDC8A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31EACE51-F970-47DD-8D41-3F9ED8EDC8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31EACE51-F970-47DD-8D41-3F9ED8EDC8A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31EACE51-F970-47DD-8D41-3F9ED8EDC8A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785D41DD-8B24-4019-9DCD-9AF053D819DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785D41DD-8B24-4019-9DCD-9AF053D819DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785D41DD-8B24-4019-9DCD-9AF053D819DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785D41DD-8B24-4019-9DCD-9AF053D819DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
