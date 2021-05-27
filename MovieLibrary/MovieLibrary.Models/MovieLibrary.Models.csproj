@@ -44,8 +44,6 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Db\Director.cs" />
-        <Compile Include="Db\Genre.cs" />
         <Compile Include="Db\Movie.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
