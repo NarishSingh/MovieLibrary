@@ -276,6 +276,12 @@
     <ItemGroup>
       <TypeScriptCompile Include="Scripts\index.d.ts" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\MovieLibrary.Data\MovieLibrary.Data.csproj">
+        <Project>{31eace51-f970-47dd-8d41-3f9ed8edc8a3}</Project>
+        <Name>MovieLibrary.Data</Name>
+      </ProjectReference>
+    </ItemGroup>
     <PropertyGroup>
         <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
         <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
