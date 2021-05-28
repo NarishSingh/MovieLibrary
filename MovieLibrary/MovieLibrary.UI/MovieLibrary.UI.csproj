@@ -249,6 +249,7 @@
         <Content Include="Scripts\umd\popper.js.map" />
         <Content Include="Scripts\umd\popper.min.js" />
         <Content Include="Scripts\umd\popper.min.js.map" />
+        <Content Include="Sql\DbResetDp.sql" />
         <Content Include="Sql\MovieLibrary.sql" />
         <Content Include="Sql\MovieLibraryDDL.sql" />
         <Content Include="Sql\sporcs.sql" />

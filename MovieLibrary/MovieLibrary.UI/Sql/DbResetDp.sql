@@ -1,0 +1,17 @@
+﻿USE MovieLibrary;
+GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'DbReset'
+    )
+    DROP PROCEDURE DbReset
+GO
+
+CREATE PROCEDURE DbReset
+AS
+BEGIN
+    
+END
+GO
