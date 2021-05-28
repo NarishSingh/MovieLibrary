@@ -44,6 +44,23 @@ GO
 IF EXISTS(
         SELECT *
         FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MovieSelectAll'
+    )
+    DROP PROCEDURE MovieSelectAll
+GO
+
+CREATE PROCEDURE MovieSelectAll
+AS
+BEGIN
+    SELECT *
+    FROM Movie;
+END
+GO
+
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
         WHERE ROUTINE_NAME = 'MovieUpdate'
     )
     DROP PROCEDURE MovieUpdate

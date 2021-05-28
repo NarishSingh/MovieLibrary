@@ -1,4 +1,7 @@
-﻿using MovieLibrary.Models.Db;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using MovieLibrary.Models.Db;
 
 namespace MovieLibrary.Data
 {
@@ -20,6 +23,12 @@ namespace MovieLibrary.Data
         /// <param name="movieId">int for a valid movie id</param>
         /// <returns>Movie obj corresponding to that id</returns>
         Movie ReadMovieById(int movieId);
+
+        /// <summary>
+        /// Read all Movie obj's from db
+        /// </summary>
+        /// <returns>IEnumerable of all movies</returns>
+        IEnumerable<Movie> ReadAllMovies();
 
         /// <summary>
         /// Update a movie record in db

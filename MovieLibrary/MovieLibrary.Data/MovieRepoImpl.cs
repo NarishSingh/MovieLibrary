@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -44,6 +45,14 @@ namespace MovieLibrary.Data
                 param.Add("@MovieId", movieId);
 
                 return c.Query<Movie>("MovieSelect", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
+
+        public IEnumerable<Movie> ReadAllMovies()
+        {
+            using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
+            {
+                return c.Query<Movie>("MovieSelectAll", commandType: CommandType.StoredProcedure);
             }
         }
 
