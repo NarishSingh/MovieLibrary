@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MovieLibrary.Models.Db
+﻿namespace MovieLibrary.Models.Db
 {
     /// <summary>
     /// For persistence to Db only

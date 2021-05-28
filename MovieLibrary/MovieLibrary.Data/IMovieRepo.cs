@@ -11,7 +11,8 @@ namespace MovieLibrary.Data
         /// Create a new movie record in db
         /// </summary>
         /// <param name="movie">well form Movie obj</param>
-        void CreateMovie(Movie movie);
+        /// <returns>Successfully added movie from db</returns>
+        Movie CreateMovie(Movie movie);
 
         /// <summary>
         /// Read a movie obj from db
@@ -24,12 +25,14 @@ namespace MovieLibrary.Data
         /// Update a movie record in db
         /// </summary>
         /// <param name="update">well formed Movie obj to be updated</param>
-        void UpdateMovie(Movie update);
+        /// <returns>Successfully updated movie from db</returns>
+        Movie UpdateMovie(Movie update);
 
         /// <summary>
         /// Delete a movie record from Db
         /// </summary>
         /// <param name="movieId">valid id for a movie record in db</param>
-        void DeleteMovie(int movieId);
+        /// <returns>True if deleted, false if failed</returns>
+        bool DeleteMovie(int movieId);
     }
 }
