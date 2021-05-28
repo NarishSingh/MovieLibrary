@@ -44,7 +44,9 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Movie.cs" />
+        <Compile Include="API\MovieDetailedItem.cs" />
+        <Compile Include="API\MovieShortItem.cs" />
+        <Compile Include="Db\Movie.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

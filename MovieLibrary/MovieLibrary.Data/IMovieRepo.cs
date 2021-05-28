@@ -8,7 +8,7 @@ namespace MovieLibrary.Data
     public interface IMovieRepo
     {
         /// <summary>
-        /// When a movie record receives >0 likes or dislikes, persist to db
+        /// Create a new movie record in db
         /// </summary>
         /// <param name="movie">well form Movie obj</param>
         void CreateMovie(Movie movie);
@@ -21,13 +21,13 @@ namespace MovieLibrary.Data
         Movie ReadMovieById(int movieId);
 
         /// <summary>
-        /// If a movie gets a like or dislike, update record in db
+        /// Update a movie record in db
         /// </summary>
         /// <param name="update">well formed Movie obj to be updated</param>
         void UpdateMovie(Movie update);
 
         /// <summary>
-        /// When a movie's likes and dislikes both reach 0, delete from db
+        /// Delete a movie record from Db
         /// </summary>
         /// <param name="movieId">valid id for a movie record in db</param>
         void DeleteMovie(int movieId);

@@ -2,6 +2,9 @@
 
 namespace MovieLibrary.Models.Db
 {
+    /// <summary>
+    /// For persistence to Db only
+    /// </summary>
     public class Movie
     {
         public int MovieId { get; set; }
