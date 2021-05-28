@@ -11,12 +11,8 @@ namespace MovieLibrary.Data
     {
         public Movie CreateMovie(Movie movie)
         {
-            using (SqlConnection c = new SqlConnection())
+            using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
-                c.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["MovieLibrary"]
-                    .ConnectionString;
-
                 DynamicParameters param = new DynamicParameters();
 
                 //output
@@ -42,12 +38,8 @@ namespace MovieLibrary.Data
 
         public Movie ReadMovieById(int movieId)
         {
-            using (SqlConnection c = new SqlConnection())
+            using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
-                c.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["MovieLibrary"]
-                    .ConnectionString;
-
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@MovieId", movieId);
 
@@ -57,12 +49,8 @@ namespace MovieLibrary.Data
 
         public Movie UpdateMovie(Movie update)
         {
-            using (SqlConnection c = new SqlConnection())
+            using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
-                c.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["MovieLibrary"]
-                    .ConnectionString;
-
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@MovieId", update.MovieId);
                 param.Add("@MovieTitle", update.MovieTitle);
@@ -77,12 +65,8 @@ namespace MovieLibrary.Data
 
         public bool DeleteMovie(int movieId)
         {
-            using (SqlConnection c = new SqlConnection())
+            using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
-                c.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["MovieLibrary"]
-                    .ConnectionString;
-
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@MovieId", movieId);
 
