@@ -12,11 +12,11 @@ GO
 CREATE PROCEDURE DbReset
 AS
 BEGIN
-    --scrub db
+    -- scrub db
     DELETE FROM Movie;
 
-    --sample data
-    DBCC CHECKIDENT ('Movie', RESEED , 1);
+    -- sample data
+    DBCC CHECKIDENT ('Movie', RESEED , 1); -- reseed at 1
     SET IDENTITY_INSERT Movie ON;
     INSERT INTO Movie(MovieId, MovieTitle, Likes, Dislikes)
     VALUES (1, 'Test I', 1, 5),
