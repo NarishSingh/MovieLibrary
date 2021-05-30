@@ -278,9 +278,9 @@
       <TypeScriptCompile Include="Scripts\index.d.ts" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\MovieLibrary.Data\MovieLibrary.Data.csproj">
-        <Project>{31eace51-f970-47dd-8d41-3f9ed8edc8a3}</Project>
-        <Name>MovieLibrary.Data</Name>
+      <ProjectReference Include="..\MovieLibrary.Service\MovieLibrary.Service.csproj">
+        <Project>{a2f64e9d-6f85-47ed-bf6a-3be0e6c5fd88}</Project>
+        <Name>MovieLibrary.Service</Name>
       </ProjectReference>
     </ItemGroup>
     <PropertyGroup>

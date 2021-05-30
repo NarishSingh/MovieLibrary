@@ -22,6 +22,7 @@ BEGIN
     VALUES (1, 'Test I', 1, 5),
            (2, 'Test II', 5, 7),
            (3, 'Test III: Test II Part II', 0, 99);
+    SET IDENTITY_INSERT Movie OFF;
 END
 GO
 
