@@ -13,7 +13,7 @@ namespace MovieLibrary.Test
         [SetUp]
         public void Init()
         {
-            
+            _movieApi = new MovieApiImpl();
         }
 
         [Test]

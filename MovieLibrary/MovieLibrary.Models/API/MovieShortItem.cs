@@ -1,15 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace MovieLibrary.Models.API
 {
-    /// <summary>
-    /// Short item DTO's for API's that return IEnumerables
-    /// </summary>
     public class MovieShortItem
     {
-        [JsonProperty("imdb_id")] public string ImdbId { get; set; }
-        [JsonProperty("title")] public string Title { get; set; }
-        [JsonProperty("year")] public string Year { get; set; }
+        [JsonProperty("id")] public string Id { get; set; }
+        [JsonProperty("original_title")] public string Title { get; set; }
+        [JsonProperty("release_date")] public string ReleaseDate { get; set; }
     }
 }

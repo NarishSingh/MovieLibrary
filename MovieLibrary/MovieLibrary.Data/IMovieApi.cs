@@ -13,7 +13,7 @@ namespace MovieLibrary.Data
         /// Search for movies by title
         /// </summary>
         /// <param name="title">string for the movie title</param>
-        /// <returns>IEnumerable of all search resultss</returns>
+        /// <returns>Task with IEnumerable of movie short items</returns>
         Task<IEnumerable<MovieShortItem>> SearchByTitle(string title);
     }
 }

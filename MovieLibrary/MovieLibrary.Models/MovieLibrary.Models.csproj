@@ -46,6 +46,7 @@
     <ItemGroup>
         <Compile Include="API\MovieDetailedItem.cs" />
         <Compile Include="API\MovieShortItem.cs" />
+        <Compile Include="API\SearchResults.cs" />
         <Compile Include="Db\Movie.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
