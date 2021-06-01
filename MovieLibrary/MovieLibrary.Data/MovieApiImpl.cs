@@ -94,13 +94,13 @@ namespace MovieLibrary.Data
             using (HttpResponseMessage crewResponse = await Client.SendAsync(crewRequest))
             {
                 string body = await crewResponse.Content.ReadAsStringAsync();
-                Cast cast = JsonConvert.DeserializeObject<Cast>(body);
+                Crew crew = JsonConvert.DeserializeObject<Crew>(body);
 
                 //LINQ to find director names
-                IEnumerable<string> directors = cast.CrewMembers
-                    .Where(crew => crew.Job == "Director")
+                IEnumerable<string> directors = crew.CrewMembers
+                    .Where(crewMember => crewMember.Job == "Director")
                     .Select(director => director.Name);
-                movie.Directors = directors; //TODO query not working
+                movie.Directors = directors;
             }
 
             return movie;

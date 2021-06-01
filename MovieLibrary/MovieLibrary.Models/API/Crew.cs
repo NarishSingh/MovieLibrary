@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace MovieLibrary.Models.API
 {
-    public class Cast
+    public class Crew
     {
-        [JsonProperty("cast")] public List<CrewMember> CrewMembers { get; set; }
+        [JsonProperty("crew")] public List<CrewMember> CrewMembers { get; set; }
 
         public override string ToString()
         {

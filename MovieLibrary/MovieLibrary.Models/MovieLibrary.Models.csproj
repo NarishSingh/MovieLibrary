@@ -44,7 +44,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="API\Cast.cs" />
+        <Compile Include="API\Crew.cs" />
         <Compile Include="API\CrewMember.cs" />
         <Compile Include="API\MovieDetailedItem.cs" />
         <Compile Include="API\MovieShortItem.cs" />
