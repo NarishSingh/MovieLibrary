@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MovieLibrary.Models.API;
@@ -19,6 +20,13 @@ namespace MovieLibrary.Data
             return task.Result; //use result to get the IEnumerable out of the task
         }
 
+        public MovieDetailedItem GetMovieById(int movieId)
+        {
+            Task<MovieDetailedItem> task = Task<MovieDetailedItem>.Factory
+                .StartNew(() => GetMovieDetails(movieId).Result);
+            return task.Result;
+        }
+
         /*TASKS*/
         /// <summary>
         /// Perform search using the MovieDb API
@@ -29,7 +37,7 @@ namespace MovieLibrary.Data
         {
             SearchResults movieList;
 
-            //create the request
+            //create the request - GET movies by title
             HttpRequestMessage request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
@@ -49,6 +57,48 @@ namespace MovieLibrary.Data
             }
 
             return movieList.Movies; //return the IEnumerable
+        }
+        
+        private async Task<MovieDetailedItem> GetMovieDetails(int movieId)
+        {
+            MovieDetailedItem movie;
+
+            //GET movie details
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"https://api.themoviedb.org/3/movie/{movieId}?api_key={ApiKey}&language=en-US")
+            };
+
+            using (HttpResponseMessage response = await Client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                string body = await response.Content.ReadAsStringAsync();
+                movie = JsonConvert.DeserializeObject<MovieDetailedItem>(body);
+            }
+
+            //GET movie crew details and find directors
+            HttpRequestMessage crewRequest = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri =
+                    new Uri($"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}&language=en-US")
+            };
+
+            using (HttpResponseMessage crewResponse = await Client.SendAsync(crewRequest))
+            {
+                string body = await crewResponse.Content.ReadAsStringAsync();
+                Cast cast = JsonConvert.DeserializeObject<Cast>(body);
+
+                //LINQ to find director names
+                IEnumerable<string> directors = cast.CrewMembers
+                    .Where(crew => crew.Dept.Equals("Director"))
+                    .Select(director => director.Name);
+                movie.Directors = directors;
+            }
+
+            return movie;
         }
     }
 }

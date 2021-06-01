@@ -14,5 +14,12 @@ namespace MovieLibrary.Data
         /// <param name="title">string for the movie title</param>
         /// <returns>IEnumerable of movie short items</returns>
         IEnumerable<MovieShortItem> SearchByTitle(string title);
+
+        /// <summary>
+        /// Get details for a movie
+        /// </summary>
+        /// <param name="movieId">int for a valid movie entry</param>
+        /// <returns>MovieDetailedItem with info for a movie</returns>
+        MovieDetailedItem GetMovieById(int movieId);
     }
 }
