@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using MovieLibrary.Models.API;
 
 namespace MovieLibrary.Data
@@ -13,7 +12,7 @@ namespace MovieLibrary.Data
         /// Search for movies by title
         /// </summary>
         /// <param name="title">string for the movie title</param>
-        /// <returns>Task with IEnumerable of movie short items</returns>
-        Task<IEnumerable<MovieShortItem>> SearchByTitle(string title);
+        /// <returns>IEnumerable of movie short items</returns>
+        IEnumerable<MovieShortItem> SearchByTitle(string title);
     }
 }

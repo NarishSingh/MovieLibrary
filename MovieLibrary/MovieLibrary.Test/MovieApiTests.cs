@@ -19,7 +19,7 @@ namespace MovieLibrary.Test
         [Test]
         public void SearchByTitleTest()
         {
-            IEnumerable<MovieShortItem> movies = _movieApi.SearchByTitle("matrix").Result; //use result to get the IEnumerable out of the task
+            IEnumerable<MovieShortItem> movies = _movieApi.SearchByTitle("matrix");
 
             Assert.IsNotNull(movies);
         }
