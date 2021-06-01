@@ -3,13 +3,13 @@ using Newtonsoft.Json;
 
 namespace MovieLibrary.Models.API
 {
-    public class SearchResults
+    public class Cast
     {
-        [JsonProperty("results")] public IEnumerable<MovieShortItem> Movies { get; set; }
+        [JsonProperty("cast")] public List<CrewMember> CrewMembers { get; set; }
 
         public override string ToString()
         {
-            return $"{nameof(Movies)}: {Movies}";
+            return $"{nameof(CrewMembers)}: {CrewMembers}";
         }
     }
 }
