@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MovieLibrary.Data;
 using MovieLibrary.Models.API;
@@ -34,7 +33,7 @@ namespace MovieLibrary.Test
             
             Assert.IsNotNull(movie);
             Assert.AreEqual("The Matrix", movie.Title);
-            Assert.IsNotNull(movie.Directors); //check for 2nd api call
+            Assert.AreEqual(2, movie.Directors.Count()); //check for 2nd api call
         }
     }
 }

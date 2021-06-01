@@ -58,7 +58,12 @@ namespace MovieLibrary.Data
 
             return movieList.Movies; //return the IEnumerable
         }
-        
+
+        /// <summary>
+        /// Get details for a movie
+        /// </summary>
+        /// <param name="movieId">int for a valid movie id</param>
+        /// <returns>Task with the MovieDetailedItem with movie info</returns>
         private async Task<MovieDetailedItem> GetMovieDetails(int movieId)
         {
             MovieDetailedItem movie;
@@ -93,9 +98,9 @@ namespace MovieLibrary.Data
 
                 //LINQ to find director names
                 IEnumerable<string> directors = cast.CrewMembers
-                    .Where(crew => crew.Dept.Equals("Director"))
+                    .Where(crew => crew.Job == "Director")
                     .Select(director => director.Name);
-                movie.Directors = directors;
+                movie.Directors = directors; //TODO query not working
             }
 
             return movie;
