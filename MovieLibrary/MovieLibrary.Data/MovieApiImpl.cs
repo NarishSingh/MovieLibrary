@@ -27,6 +27,13 @@ namespace MovieLibrary.Data
             return task.Result;
         }
 
+        public IEnumerable<MovieShortItem> SearchNowPlaying()
+        {
+            Task<IEnumerable<MovieShortItem>> task = Task<IEnumerable<MovieShortItem>>.Factory
+                .StartNew(() => GetNowPlaying().Result);
+            return task.Result;
+        }
+
         /*TASKS*/
         /// <summary>
         /// Perform search using the MovieDb API
@@ -104,6 +111,31 @@ namespace MovieLibrary.Data
             }
 
             return movie;
+        }
+
+        /// <summary>
+        /// Get movies currently playing
+        /// </summary>
+        /// <returns>Task with a IEnumerable of movie short items</returns>
+        private async Task<IEnumerable<MovieShortItem>> GetNowPlaying()
+        {
+            SearchResults nowPlaying;
+
+            HttpRequestMessage request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"https://api.themoviedb.org/3/movie/now_playing?api_key={ApiKey}&language=en-US&page=1")
+            };
+
+            using (HttpResponseMessage response = await Client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                string body = await response.Content.ReadAsStringAsync();
+                nowPlaying = JsonConvert.DeserializeObject<SearchResults>(body);
+            }
+
+            return nowPlaying.Movies;
         }
     }
 }

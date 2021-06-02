@@ -21,5 +21,11 @@ namespace MovieLibrary.Data
         /// <param name="movieId">int for a valid movie entry</param>
         /// <returns>MovieDetailedItem with info for a movie</returns>
         MovieDetailedItem GetMovieById(int movieId);
+
+        /// <summary>
+        /// Get a list of movies currently playing
+        /// </summary>
+        /// <returns>IEnumerable of movie short items</returns>
+        IEnumerable<MovieShortItem> SearchNowPlaying();
     }
 }
