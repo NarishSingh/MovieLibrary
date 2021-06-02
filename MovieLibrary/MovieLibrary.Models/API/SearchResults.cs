@@ -9,10 +9,7 @@ namespace MovieLibrary.Models.API
     public class SearchResults
     {
         [JsonProperty("results")] public IEnumerable<MovieShortItem> Movies { get; set; }
-
-        public override string ToString()
-        {
-            return $"{nameof(Movies)}: {Movies}";
-        }
+        [JsonProperty("total_pages")] public int TotalPages { get; set; }
+        [JsonProperty("total_results")] public int TotalResults { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace MovieLibrary.Data
             return task.Result; //use result to get the IEnumerable out of the task
         }
 
-        public MovieDetailedItem GetMovieById(int movieId)
+        public MovieDetailedItem SearchMovieById(int movieId)
         {
             Task<MovieDetailedItem> task = Task<MovieDetailedItem>.Factory
                 .StartNew(() => GetMovieDetails(movieId).Result);
@@ -104,10 +104,9 @@ namespace MovieLibrary.Data
                 Crew crew = JsonConvert.DeserializeObject<Crew>(body);
 
                 //LINQ to find director names
-                IEnumerable<string> directors = crew.CrewMembers
+                movie.Directors = crew.CrewMembers
                     .Where(crewMember => crewMember.Job == "Director")
                     .Select(director => director.Name);
-                movie.Directors = directors;
             }
 
             return movie;

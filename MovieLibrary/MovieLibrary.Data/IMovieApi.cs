@@ -20,7 +20,7 @@ namespace MovieLibrary.Data
         /// </summary>
         /// <param name="movieId">int for a valid movie entry</param>
         /// <returns>MovieDetailedItem with info for a movie</returns>
-        MovieDetailedItem GetMovieById(int movieId);
+        MovieDetailedItem SearchMovieById(int movieId);
 
         /// <summary>
         /// Get a list of movies currently playing

@@ -30,7 +30,7 @@ namespace MovieLibrary.Test
         [Test]
         public void SearchMovieByIdTest()
         {
-            MovieDetailedItem movie = _movieApi.GetMovieById(603); //The Matrix
+            MovieDetailedItem movie = _movieApi.SearchMovieById(603); //The Matrix
             
             Assert.IsNotNull(movie);
             Assert.AreEqual("The Matrix", movie.Title);
