@@ -38,12 +38,18 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="IService.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="ServiceImpl.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\MovieLibrary.Data\MovieLibrary.Data.csproj">
         <Project>{31eace51-f970-47dd-8d41-3f9ed8edc8a3}</Project>
         <Name>MovieLibrary.Data</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\MovieLibrary.Models\MovieLibrary.Models.csproj">
+        <Project>{13822266-363a-4a71-b349-d5cdf160bd08}</Project>
+        <Name>MovieLibrary.Models</Name>
       </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

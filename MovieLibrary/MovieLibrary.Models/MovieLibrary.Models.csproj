@@ -51,6 +51,8 @@
         <Compile Include="API\SearchResults.cs" />
         <Compile Include="Db\Movie.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="ViewModels\MovieViewModel.cs" />
+        <Compile Include="ViewModels\MovieVM.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

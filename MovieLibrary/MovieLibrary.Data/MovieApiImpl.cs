@@ -123,7 +123,8 @@ namespace MovieLibrary.Data
             HttpRequestMessage request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://api.themoviedb.org/3/movie/now_playing?api_key={ApiKey}&language=en-US&page=1")
+                RequestUri =
+                    new Uri($"https://api.themoviedb.org/3/movie/now_playing?api_key={ApiKey}&language=en-US&page=1")
             };
 
             using (HttpResponseMessage response = await Client.SendAsync(request))
