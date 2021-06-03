@@ -72,6 +72,7 @@
         <Compile Include="MovieApiTests.cs" />
         <Compile Include="MovieRepoTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="ServiceTests.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />
@@ -85,6 +86,10 @@
       <ProjectReference Include="..\MovieLibrary.Models\MovieLibrary.Models.csproj">
         <Project>{13822266-363a-4a71-b349-d5cdf160bd08}</Project>
         <Name>MovieLibrary.Models</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\MovieLibrary.Service\MovieLibrary.Service.csproj">
+        <Project>{a2f64e9d-6f85-47ed-bf6a-3be0e6c5fd88}</Project>
+        <Name>MovieLibrary.Service</Name>
       </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,7 +21,11 @@ BEGIN
     INSERT INTO Movie(MovieId, MovieTitle, Likes, Dislikes)
     VALUES (1, 'Test I', 1, 5),
            (2, 'Test II', 5, 7),
-           (3, 'Test III: Test II Part II', 0, 99);
+           (3, 'Test III: Test II Part II', 0, 99),
+           -- actual movies for service testing
+           (4, 'The Matrix', 1, 0),
+           (5, 'The Matrix Reloaded', 1, 1),
+           (6, 'The Matrix Revolutions', 0, 1);
     SET IDENTITY_INSERT Movie OFF;
 END
 GO

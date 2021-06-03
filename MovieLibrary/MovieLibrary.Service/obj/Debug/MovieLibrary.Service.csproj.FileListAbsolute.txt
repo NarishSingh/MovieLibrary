@@ -1,0 +1,15 @@
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\MovieLibrary.Service.dll
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\MovieLibrary.Service.pdb
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\MovieLibrary.Data.dll
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\MovieLibrary.Models.dll
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\Dapper.dll
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\Newtonsoft.Json.dll
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\MovieLibrary.Data.pdb
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\MovieLibrary.Models.pdb
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\Dapper.xml
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\bin\Debug\Newtonsoft.Json.xml
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\obj\Debug\MovieLibrary.Service.csprojAssemblyReference.cache
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\obj\Debug\MovieLibrary.Service.csproj.CoreCompileInputs.cache
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\obj\Debug\MovieLibrary.Service.csproj.CopyComplete
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\obj\Debug\MovieLibrary.Service.dll
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\MovieLibrary\MovieLibrary\MovieLibrary.Service\obj\Debug\MovieLibrary.Service.pdb

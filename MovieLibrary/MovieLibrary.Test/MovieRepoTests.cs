@@ -41,13 +41,15 @@ namespace MovieLibrary.Test
             {
                 MovieTitle = "Test Insert"
             };
+            IEnumerable<MovieDb> beforeCreate = _repo.ReadAllMovies();
 
             MovieDb created = _repo.CreateMovie(test);
-            IEnumerable<MovieDb> allMovies = _repo.ReadAllMovies();
+            IEnumerable<MovieDb> afterCreate = _repo.ReadAllMovies();
 
             Assert.NotNull(created);
-            Assert.AreEqual(4, allMovies.Count());
-            Assert.AreEqual(4, created.MovieId);
+            Assert.AreEqual(6, beforeCreate.Count());
+            Assert.AreEqual(7, afterCreate.Count());
+            Assert.AreEqual(7, created.MovieId);
             Assert.AreEqual("Test Insert", created.MovieTitle);
             //db should default to 0 likes and dislikes
             Assert.AreEqual(0, created.Likes);
@@ -100,10 +102,13 @@ namespace MovieLibrary.Test
             List<MovieDb> allMovies = _repo.ReadAllMovies().ToList();
 
             Assert.NotNull(allMovies);
-            Assert.AreEqual(3, allMovies.Count);
+            Assert.AreEqual(6, allMovies.Count);
             Assert.AreEqual(1, allMovies[0].MovieId);
             Assert.AreEqual(2, allMovies[1].MovieId);
             Assert.AreEqual(3, allMovies[2].MovieId);
+            Assert.AreEqual(4, allMovies[3].MovieId);
+            Assert.AreEqual(5, allMovies[4].MovieId);
+            Assert.AreEqual(6, allMovies[5].MovieId);
         }
 
         [Test]
@@ -155,9 +160,9 @@ namespace MovieLibrary.Test
             bool deleted = _repo.DeleteMovie(created.MovieId);
             IEnumerable<MovieDb> afterDel = _repo.ReadAllMovies();
             
-            Assert.AreEqual(4, original.Count());
+            Assert.AreEqual(7, original.Count());
             Assert.IsTrue(deleted);
-            Assert.AreEqual(3, afterDel.Count());
+            Assert.AreEqual(6, afterDel.Count());
         }
 
         [Test]

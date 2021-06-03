@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using MovieLibrary.Data;
 using MovieLibrary.Models.API;
 using MovieLibrary.Models.Db;
