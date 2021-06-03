@@ -39,7 +39,7 @@ namespace MovieLibrary.Data
         /// Update a movie record in db
         /// </summary>
         /// <param name="update">well formed Movie obj to be updated</param>
-        /// <returns>Successfully updated movie from db</returns>
+        /// <returns>Successfully updated movie from db, null if failed to update</returns>
         MovieDb UpdateMovie(MovieDb update);
 
         /// <summary>

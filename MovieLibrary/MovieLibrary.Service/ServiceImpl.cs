@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using MovieLibrary.Data;
 using MovieLibrary.Models.API;
 using MovieLibrary.Models.Db;
@@ -17,7 +18,6 @@ namespace MovieLibrary.Service
             _apiDao = new MovieApiImpl();
             _repoDao = new MovieRepoImpl();
         }
-
 
         public IEnumerable<MovieShortItem> SearchNowPlaying()
         {
@@ -66,14 +66,35 @@ namespace MovieLibrary.Service
             };
         }
 
-        public Movie LikeMovie(int id)
+        public Movie PersistLikeDislike(Movie m)
         {
-            throw new System.NotImplementedException();
-        }
+            //check if movie exists in db
+            if (m.RepoId != null)
+            {
+                MovieDb update = new MovieDb
+                {
+                    MovieId = m.RepoId.GetValueOrDefault(), //will never be null due to check, but required to stop error
+                    MovieTitle = m.Title,
+                    Likes = m.Likes,
+                    Dislikes = m.Dislikes
+                };
 
-        public Movie DislikeMovie(int id)
-        {
-            throw new System.NotImplementedException();
+                return _repoDao.UpdateMovie(update) != null ? m : null;
+            }
+
+            //else, create new entry
+            MovieDb newEntry = _repoDao.CreateMovie(
+                new MovieDb
+                {
+                    MovieTitle = m.Title,
+                    Likes = m.Likes,
+                    Dislikes = m.Dislikes
+                }
+            );
+
+            m.RepoId = newEntry.MovieId; //set RepoId as it was previously null
+
+            return m;
         }
     }
 }

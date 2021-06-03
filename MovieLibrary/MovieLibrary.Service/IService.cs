@@ -27,17 +27,10 @@ namespace MovieLibrary.Service
         Movie GetMovieById(int id);
 
         /// <summary>
-        /// Add a like to a movie, persist to db by creating or updating an entry
+        /// On like or dislike, persist movie entry to db
         /// </summary>
-        /// <param name="id">int for movie id</param>
-        /// <returns>the Movie of the liked movie</returns>
-        Movie LikeMovie(int id);
-
-        /// <summary>
-        /// Add a dislike to a movie, persist to db by creating or updating an entry
-        /// </summary>
-        /// <param name="id">int for movie id</param>
-        /// <returns>the Movie of the disliked movie</returns>
-        Movie DislikeMovie(int id);
+        /// <param name="m">Movie to be created or updated in db</param>
+        /// <returns>the Movie of the (dis)liked movie</returns>
+        Movie PersistLikeDislike(Movie m);
     }
 }
