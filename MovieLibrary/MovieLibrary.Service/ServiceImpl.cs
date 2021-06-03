@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MovieLibrary.Data;
 using MovieLibrary.Models.API;
-using MovieLibrary.Models.ViewModels;
+using MovieLibrary.Models.Service;
 
 namespace MovieLibrary.Service
 {
@@ -27,17 +27,17 @@ namespace MovieLibrary.Service
             throw new System.NotImplementedException();
         }
 
-        public MovieVM GetMovieById(int id)
+        public Movie GetMovieById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public MovieVM LikeMovie(int id)
+        public Movie LikeMovie(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public MovieVM DislikeMovie(int id)
+        public Movie DislikeMovie(int id)
         {
             throw new System.NotImplementedException();
         }

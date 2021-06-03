@@ -3,7 +3,7 @@
     /// <summary>
     /// For persistence to Db only
     /// </summary>
-    public class Movie
+    public class MovieDb
     {
         public int MovieId { get; set; }
         public string MovieTitle { get; set; }

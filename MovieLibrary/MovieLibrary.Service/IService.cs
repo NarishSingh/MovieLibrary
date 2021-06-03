@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MovieLibrary.Models.API;
-using MovieLibrary.Models.ViewModels;
+using MovieLibrary.Models.Service;
 
 namespace MovieLibrary.Service
 {
@@ -23,21 +23,21 @@ namespace MovieLibrary.Service
         /// Get movie details
         /// </summary>
         /// <param name="id">int for movie id</param>
-        /// <returns>MovieVM with all movie details and like/dislike counts</returns>
-        MovieVM GetMovieById(int id);
+        /// <returns>Movie with all movie details and like/dislike counts</returns>
+        Movie GetMovieById(int id);
 
         /// <summary>
         /// Add a like to a movie, persist to db by creating or updating an entry
         /// </summary>
         /// <param name="id">int for movie id</param>
-        /// <returns>the MovieVM of the liked movie</returns>
-        MovieVM LikeMovie(int id);
+        /// <returns>the Movie of the liked movie</returns>
+        Movie LikeMovie(int id);
 
         /// <summary>
         /// Add a dislike to a movie, persist to db by creating or updating an entry
         /// </summary>
         /// <param name="id">int for movie id</param>
-        /// <returns>the MovieVM of the disliked movie</returns>
-        MovieVM DislikeMovie(int id);
+        /// <returns>the Movie of the disliked movie</returns>
+        Movie DislikeMovie(int id);
     }
 }

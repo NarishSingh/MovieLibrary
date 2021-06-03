@@ -37,13 +37,13 @@ namespace MovieLibrary.Test
         [Test]
         public void CreateMovieTest()
         {
-            Movie test = new Movie
+            MovieDb test = new MovieDb
             {
                 MovieTitle = "Test Insert"
             };
 
-            Movie created = _repo.CreateMovie(test);
-            IEnumerable<Movie> allMovies = _repo.ReadAllMovies();
+            MovieDb created = _repo.CreateMovie(test);
+            IEnumerable<MovieDb> allMovies = _repo.ReadAllMovies();
 
             Assert.NotNull(created);
             Assert.AreEqual(4, allMovies.Count());
@@ -57,7 +57,7 @@ namespace MovieLibrary.Test
         [Test]
         public void ReadMovieByIdTest()
         {
-            Movie first = _repo.ReadMovieById(1);
+            MovieDb first = _repo.ReadMovieById(1);
 
             Assert.NotNull(first);
             Assert.AreEqual(1, first.MovieId);
@@ -69,7 +69,7 @@ namespace MovieLibrary.Test
         [Test]
         public void ReadByIdFail()
         {
-            Movie fail = _repo.ReadMovieById(Int32.MaxValue);
+            MovieDb fail = _repo.ReadMovieById(int.MaxValue);
 
             Assert.IsNull(fail);
         }
@@ -77,7 +77,7 @@ namespace MovieLibrary.Test
         [Test]
         public void ReadAllMoviesTest()
         {
-            List<Movie> allMovies = _repo.ReadAllMovies().ToList();
+            List<MovieDb> allMovies = _repo.ReadAllMovies().ToList();
 
             Assert.NotNull(allMovies);
             Assert.AreEqual(3, allMovies.Count);
@@ -89,12 +89,12 @@ namespace MovieLibrary.Test
         [Test]
         public void UpdateMovieTest()
         {
-            Movie original = _repo.ReadMovieById(1);
-            Movie test = _repo.ReadMovieById(1);
+            MovieDb original = _repo.ReadMovieById(1);
+            MovieDb test = _repo.ReadMovieById(1);
             test.Likes++;
             test.Dislikes--;
 
-            Movie updated = _repo.UpdateMovie(test);
+            MovieDb updated = _repo.UpdateMovie(test);
 
             Assert.NotNull(updated);
             Assert.AreEqual(updated.MovieId, original.MovieId);
@@ -108,7 +108,7 @@ namespace MovieLibrary.Test
         [Test]
         public void UpdateFail()
         {
-            Movie badMovie = new Movie
+            MovieDb badMovieDb = new MovieDb
             {
                 MovieId = Int32.MinValue,
                 MovieTitle = "Bad Movie",
@@ -116,7 +116,7 @@ namespace MovieLibrary.Test
                 Dislikes = -999
             };
 
-            Movie noUpdate = _repo.UpdateMovie(badMovie);
+            MovieDb noUpdate = _repo.UpdateMovie(badMovieDb);
 
             Assert.IsNull(noUpdate);
         }
@@ -124,16 +124,16 @@ namespace MovieLibrary.Test
         [Test]
         public void DeleteMovie()
         {
-            Movie test = new Movie
+            MovieDb test = new MovieDb
             {
                 MovieTitle = "Test Insert"
             };
 
-            Movie created = _repo.CreateMovie(test);
-            IEnumerable<Movie> original = _repo.ReadAllMovies();
+            MovieDb created = _repo.CreateMovie(test);
+            IEnumerable<MovieDb> original = _repo.ReadAllMovies();
 
             bool deleted = _repo.DeleteMovie(created.MovieId);
-            IEnumerable<Movie> afterDel = _repo.ReadAllMovies();
+            IEnumerable<MovieDb> afterDel = _repo.ReadAllMovies();
             
             Assert.AreEqual(4, original.Count());
             Assert.IsTrue(deleted);

@@ -9,7 +9,7 @@ namespace MovieLibrary.Data
 {
     public class MovieRepoImpl : IMovieRepo
     {
-        public Movie CreateMovie(Movie movie)
+        public MovieDb CreateMovie(MovieDb movieDb)
         {
             using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
@@ -23,39 +23,39 @@ namespace MovieLibrary.Data
                 );
 
                 //input
-                param.Add("@MovieTitle", movie.MovieTitle);
-                param.Add("@Likes", movie.Likes);
-                param.Add("@Dislikes", movie.Dislikes);
+                param.Add("@MovieTitle", movieDb.MovieTitle);
+                param.Add("@Likes", movieDb.Likes);
+                param.Add("@Dislikes", movieDb.Dislikes);
 
                 //execute and retrieve Id
                 c.Execute("MovieInsert", param, commandType: CommandType.StoredProcedure);
 
-                movie.MovieId = param.Get<int>("@MovieId");
+                movieDb.MovieId = param.Get<int>("@MovieId");
             }
 
-            return movie;
+            return movieDb;
         }
 
-        public Movie ReadMovieById(int movieId)
+        public MovieDb ReadMovieById(int movieId)
         {
             using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@MovieId", movieId);
 
-                return c.Query<Movie>("MovieSelect", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return c.Query<MovieDb>("MovieSelect", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
 
-        public IEnumerable<Movie> ReadAllMovies()
+        public IEnumerable<MovieDb> ReadAllMovies()
         {
             using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
-                return c.Query<Movie>("MovieSelectAll", commandType: CommandType.StoredProcedure);
+                return c.Query<MovieDb>("MovieSelectAll", commandType: CommandType.StoredProcedure);
             }
         }
 
-        public Movie UpdateMovie(Movie update)
+        public MovieDb UpdateMovie(MovieDb update)
         {
             using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
