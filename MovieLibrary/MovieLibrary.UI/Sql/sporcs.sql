@@ -26,12 +26,12 @@ GO
 IF EXISTS(
         SELECT *
         FROM INFORMATION_SCHEMA.ROUTINES
-        WHERE ROUTINE_NAME = 'MovieSelect'
+        WHERE ROUTINE_NAME = 'MovieSelectById'
     )
-    DROP PROCEDURE MovieSelect
+    DROP PROCEDURE MovieSelectById
 GO
 
-CREATE PROCEDURE MovieSelect(
+CREATE PROCEDURE MovieSelectById(
     @MovieId INT
 ) AS
 BEGIN
@@ -40,6 +40,25 @@ BEGIN
     WHERE MovieId = @MovieId;
 END
 GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MoveSelectByTitle'
+    )
+    DROP PROCEDURE MovieSelectByTitle
+GO
+
+CREATE PROCEDURE MovieSelectByTitle(
+    @MovieTitle NVARCHAR(200)
+) AS
+BEGIN
+    SELECT *
+    FROM Movie
+    WHERE MovieTitle = @MovieTitle
+END
+GO
+
 
 IF EXISTS(
         SELECT *

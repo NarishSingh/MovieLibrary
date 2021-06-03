@@ -43,7 +43,18 @@ namespace MovieLibrary.Data
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@MovieId", movieId);
 
-                return c.Query<MovieDb>("MovieSelect", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return c.Query<MovieDb>("MovieSelectById", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
+
+        public MovieDb ReadMovieByTitle(string title)
+        {
+            using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
+            {
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@MovieTitle", title);
+
+                return c.Query<MovieDb>("MovieSelectByTitle", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
 

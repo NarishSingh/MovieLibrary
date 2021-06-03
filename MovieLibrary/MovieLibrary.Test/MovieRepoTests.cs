@@ -75,6 +75,26 @@ namespace MovieLibrary.Test
         }
 
         [Test]
+        public void ReadMovieByTitleTest()
+        {
+            MovieDb first = _repo.ReadMovieByTitle("Test I");
+            
+            Assert.NotNull(first);
+            Assert.AreEqual(1, first.MovieId);
+            Assert.AreEqual("Test I", first.MovieTitle);
+            Assert.AreEqual(1, first.Likes);
+            Assert.AreEqual(5, first.Dislikes);
+        }
+
+        [Test]
+        public void ReadByTitleFail()
+        {
+            MovieDb fail = _repo.ReadMovieByTitle("");
+
+            Assert.IsNull(fail);
+        }
+
+        [Test]
         public void ReadAllMoviesTest()
         {
             List<MovieDb> allMovies = _repo.ReadAllMovies().ToList();

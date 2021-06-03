@@ -21,6 +21,13 @@ namespace MovieLibrary.Data
         /// <param name="movieId">int for a valid movie id</param>
         /// <returns>Movie obj corresponding to that id</returns>
         MovieDb ReadMovieById(int movieId);
+        
+        /// <summary>
+        /// Read a movie obj from db
+        /// </summary>
+        /// <param name="title">string for valid movie title</param>
+        /// <returns>Movie obj corresponding to that title</returns>
+        MovieDb ReadMovieByTitle(string title);
 
         /// <summary>
         /// Read all Movie obj's from db

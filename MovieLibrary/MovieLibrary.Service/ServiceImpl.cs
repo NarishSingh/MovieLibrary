@@ -19,17 +19,21 @@ namespace MovieLibrary.Service
 
         public IEnumerable<MovieShortItem> SearchNowPlaying()
         {
-            throw new System.NotImplementedException();
+            return _apiDao.SearchNowPlaying();
         }
 
         public IEnumerable<MovieShortItem> SearchByTitle(string title)
         {
-            throw new System.NotImplementedException();
+            return _apiDao.SearchByTitle(title);
         }
 
         public Movie GetMovieById(int id)
         {
-            throw new System.NotImplementedException();
+            //get from api
+            MovieDetailedItem fromApi = _apiDao.SearchMovieById(id);
+
+            //read from db by title (id's will be different), if not present, likes/dislikes set to 0
+            
         }
 
         public Movie LikeMovie(int id)
