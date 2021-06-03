@@ -8,7 +8,7 @@ namespace MovieLibrary.Models.Service
     /// </summary>
     public class Movie
     {
-        public int RepoId { get; set; } //id saved as in repo
+        public int? RepoId { get; set; } //id saved as in repo
         public int ApiId { get; set; } //id from MovieDb API
         public string Title { get; set; }
         public IEnumerable<string> Directors { get; set; }
