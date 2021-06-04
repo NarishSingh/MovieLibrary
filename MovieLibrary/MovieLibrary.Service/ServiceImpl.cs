@@ -10,7 +10,7 @@ namespace MovieLibrary.Service
     {
         private IMovieApi _apiDao;
         private IMovieRepo _repoDao;
-        private const string ImagePath = "https://image.tmdb.org/t/p/w500/"; //default 500px width
+        private const string ImagePath = "https://image.tmdb.org/t/p/w500"; //default 500px width
 
         public ServiceImpl()
         {
@@ -90,7 +90,6 @@ namespace MovieLibrary.Service
                     Dislikes = m.Dislikes
                 }
             );
-
             m.RepoId = newEntry.MovieId; //set RepoId as it was previously null
 
             return m;
