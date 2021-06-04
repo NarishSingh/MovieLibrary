@@ -83,5 +83,49 @@ namespace MovieLibrary.Test
             Assert.AreEqual(1, matrix.Likes);
             Assert.AreEqual(0, matrix.Dislikes);
         }
+        
+        [Test]
+        public void SearchByIdFail()
+        {
+            Movie fail = _service.GetMovieById(int.MaxValue);
+
+            Assert.IsNull(fail);
+        }
+
+        [Test]
+        public void PersistLikeTest()
+        {
+            Movie matrix = _service.GetMovieById(603);
+            
+            matrix.Likes++;
+            Movie addedLike = _service.PersistLikeDislike(matrix);
+            Assert.IsNotNull(addedLike);
+            Assert.AreEqual(2, addedLike.Likes);
+            Assert.AreEqual(0, addedLike.Dislikes);
+
+            matrix.Likes--;
+            Movie removedLike = _service.PersistLikeDislike(matrix);
+            Assert.IsNotNull(removedLike);
+            Assert.AreEqual(1, removedLike.Likes);
+            Assert.AreEqual(0, removedLike.Dislikes);
+        }
+
+        [Test]
+        public void PersistDislikeTest()
+        {
+            Movie matrix = _service.GetMovieById(603);
+            
+            matrix.Dislikes++;
+            Movie addedDislike = _service.PersistLikeDislike(matrix);
+            Assert.IsNotNull(addedDislike);
+            Assert.AreEqual(1, addedDislike.Likes);
+            Assert.AreEqual(1, addedDislike.Dislikes);
+
+            matrix.Dislikes--;
+            Movie removedDislike = _service.PersistLikeDislike(matrix);
+            Assert.IsNotNull(removedDislike);
+            Assert.AreEqual(1, removedDislike.Likes);
+            Assert.AreEqual(0, removedDislike.Dislikes);
+        }
     }
 }

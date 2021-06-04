@@ -32,9 +32,10 @@ namespace MovieLibrary.Service
         {
             //get from api, read from db by title (id's will be different)
             MovieDetailedItem fromApi = _apiDao.SearchMovieById(id);
+            if (fromApi == null) return null; //if api call fails, movie doesn't exist
+            
+            //if not present in db, RepoId is null and likes/dislikes defaults to 0
             MovieDb fromRepo = _repoDao.ReadMovieByTitle(fromApi.Title);
-
-            // if not present, RepoId is null and likes/dislikes set to 0
             if (fromRepo == null)
             {
                 return new Movie
