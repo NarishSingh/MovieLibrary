@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Movie Library</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,22 +16,31 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+            @Html.ActionLink("Movie Library", "Index", "Home", new {area = ""},
+                new {@class = "navbar-brand"})
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
         </div>
     </div>
 </div>
 <div class="container body-content">
+    <div class="jumbotron">
+        <h1 class="display-4">Movie Libary</h1>
+        <p class="lead">Search for your favorite films and leave a like or dislike!</p>
+        <hr class="my-4">
+    </div>
+
     @RenderBody()
+
     <hr/>
     <footer>
-        <p>&copy; @DateTime.Now.2021 - My ASP.NET Application</p>
+        <p>
+            Fullstack C# .NET Framework App by <a href="https://github.com/NarishSingh/MovieLibrary">Narish Singh</a> -
+            @DateTime.Now.2021
+        </p>
     </footer>
 </div>
 
