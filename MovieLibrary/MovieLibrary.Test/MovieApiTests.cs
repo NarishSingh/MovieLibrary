@@ -28,6 +28,14 @@ namespace MovieLibrary.Test
         }
 
         [Test]
+        public void SearchByTitleFail()
+        {
+            IEnumerable<MovieShortItem> noMovie = _movieApi.SearchByTitle(" ");
+            
+            Assert.IsNull(noMovie);
+        }
+
+        [Test]
         public void SearchMovieByIdTest()
         {
             MovieDetailedItem movie = _movieApi.SearchMovieById(603); //The Matrix
@@ -35,6 +43,14 @@ namespace MovieLibrary.Test
             Assert.IsNotNull(movie);
             Assert.AreEqual("The Matrix", movie.Title);
             Assert.AreEqual(2, movie.Directors.Count()); //check for 2nd api call
+        }
+
+        [Test]
+        public void SearchByIdFail()
+        {
+            MovieDetailedItem noMovie = _movieApi.SearchMovieById(0);
+
+            Assert.IsNull(noMovie);
         }
 
         [Test]

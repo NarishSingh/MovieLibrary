@@ -42,7 +42,7 @@ namespace MovieLibrary.Data
         /// <returns>Task which</returns>
         private async Task<IEnumerable<MovieShortItem>> GetSearch(string title)
         {
-            SearchResults movieList;
+            SearchResults movieList = new SearchResults();
 
             //create the request - GET movies by title
             HttpRequestMessage request = new HttpRequestMessage
@@ -52,15 +52,15 @@ namespace MovieLibrary.Data
                                      $"&query={title}&page=1&include_adult=false")
             };
 
-
             //send request, await
             using (HttpResponseMessage response = await Client.SendAsync(request))
             {
-                response.EnsureSuccessStatusCode();
-
-                //convert JSON to string and deserialize to root JSON array container obj
-                string body = await response.Content.ReadAsStringAsync();
-                movieList = JsonConvert.DeserializeObject<SearchResults>(body);
+                if (response.IsSuccessStatusCode)
+                {
+                    //convert JSON to string and deserialize to root JSON array container obj
+                    string body = await response.Content.ReadAsStringAsync();
+                    movieList = JsonConvert.DeserializeObject<SearchResults>(body);
+                }
             }
 
             return movieList.Movies; //return the IEnumerable
@@ -73,7 +73,7 @@ namespace MovieLibrary.Data
         /// <returns>Task with the MovieDetailedItem with movie info</returns>
         private async Task<MovieDetailedItem> GetMovieDetails(int movieId)
         {
-            MovieDetailedItem movie;
+            MovieDetailedItem movie = null;
 
             //GET movie details
             HttpRequestMessage request = new HttpRequestMessage
@@ -84,29 +84,31 @@ namespace MovieLibrary.Data
 
             using (HttpResponseMessage response = await Client.SendAsync(request))
             {
-                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    string body = await response.Content.ReadAsStringAsync();
+                    movie = JsonConvert.DeserializeObject<MovieDetailedItem>(body);
 
-                string body = await response.Content.ReadAsStringAsync();
-                movie = JsonConvert.DeserializeObject<MovieDetailedItem>(body);
-            }
+                    //GET movie crew details and find directors
+                    HttpRequestMessage crewRequest = new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri =
+                            new Uri(
+                                $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}&language=en-US")
+                    };
 
-            //GET movie crew details and find directors
-            HttpRequestMessage crewRequest = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri =
-                    new Uri($"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}&language=en-US")
-            };
+                    using (HttpResponseMessage crewResponse = await Client.SendAsync(crewRequest))
+                    {
+                        string crewBody = await crewResponse.Content.ReadAsStringAsync();
+                        Crew crew = JsonConvert.DeserializeObject<Crew>(crewBody);
 
-            using (HttpResponseMessage crewResponse = await Client.SendAsync(crewRequest))
-            {
-                string body = await crewResponse.Content.ReadAsStringAsync();
-                Crew crew = JsonConvert.DeserializeObject<Crew>(body);
-
-                //LINQ to find director names
-                movie.Directors = crew.CrewMembers
-                    .Where(crewMember => crewMember.Job == "Director")
-                    .Select(director => director.Name);
+                        //LINQ to find director names
+                        movie.Directors = crew.CrewMembers
+                            .Where(crewMember => crewMember.Job == "Director")
+                            .Select(director => director.Name);
+                    }
+                }
             }
 
             return movie;
