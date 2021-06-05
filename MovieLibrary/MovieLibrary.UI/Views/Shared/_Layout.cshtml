@@ -11,28 +11,14 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             @Html.ActionLink("Movie Library", "Index", "Home", new {area = ""},
                 new {@class = "navbar-brand"})
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-            </ul>
+            @Html.ActionLink("Now Playing", "Index", "Home")
+            @Html.ActionLink("Search", "Search", "Search")
         </div>
     </div>
 </div>
 <div class="container body-content">
-    <div class="jumbotron">
-        <h1 class="display-4">Movie Libary</h1>
-        <p class="lead">Search for your favorite films and leave a like or dislike!</p>
-        <hr class="my-4">
-    </div>
-
     @RenderBody()
 
     <hr/>
