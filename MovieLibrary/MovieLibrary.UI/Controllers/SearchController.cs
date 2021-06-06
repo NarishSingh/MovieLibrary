@@ -9,12 +9,6 @@ namespace MovieLibrary.UI.Controllers
     {
         private IService _service = new ServiceImpl();
 
-        [HttpGet]
-        public ActionResult Search()
-        {
-            return View();
-        }
-        
         [HttpPost]
         public ActionResult Search(SearchRequestVM model)
         {

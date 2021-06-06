@@ -1,0 +1,16 @@
+﻿@model MovieLibrary.UI.Models.SearchRequestVM
+
+@*TODO do input group button at end of search bar*@
+<div class="form-row">
+    <div class="col">
+        @using (Html.BeginForm("Search", "Search", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            @Html.TextBoxFor(m => m.SearchQuery, new
+            {
+                @class = "form-control",
+                placeholder = "Search Title"
+            })
+        }
+    </div>
+</div>
