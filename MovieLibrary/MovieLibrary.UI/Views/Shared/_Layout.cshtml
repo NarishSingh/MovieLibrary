@@ -1,5 +1,4 @@
-﻿@using MovieLibrary.UI.Models
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -16,8 +15,7 @@
                 new {@class = "navbar-brand"})
             @Html.ActionLink("Now Playing", "Index", "Home")
             @Html.ActionLink("Search", "Search", "Home")
-            
-            @Html.Partial("_Search", new SearchRequestVM())
+            @Html.Partial("_SearchBar")
         </div>
     </div>
 </div>

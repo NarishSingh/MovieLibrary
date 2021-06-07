@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
-using MovieLibrary.Models.API;
 using MovieLibrary.Service;
-using MovieLibrary.UI.Models;
-
+ 
 namespace MovieLibrary.UI.Controllers
 {
     public class HomeController : Controller
@@ -18,14 +15,14 @@ namespace MovieLibrary.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<MovieShortItem> model = _service.SearchNowPlaying();
-            return View(model);
+            return View(_service.SearchNowPlaying());
         }
 
-        [HttpPost]
-        public ActionResult Search(SearchRequestVM model)
+        [HttpGet]
+        public ActionResult Search(string title)
         {
-            throw new NotSupportedException();
+            //TODO validate query with regex, look up form validation on bootstrap
+            return View(_service.SearchByTitle(title));
         }
 
         [HttpGet]

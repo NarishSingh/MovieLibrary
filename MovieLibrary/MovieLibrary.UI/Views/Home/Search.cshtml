@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MovieLibrary.Models.API.MovieShortItem>
+
+@{
+    ViewBag.Title = "Search Titles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Titles</h2>
+
+<table class="table table-striped table-dark">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Release Date</th>
+        <th>View Details</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var movie in Model)
+    {
+        <tr>
+            <td>
+                <strong>@movie.Title</strong>
+            </td>
+            <td>@movie.ReleaseDate.ToString("d")</td>
+            <td>
+                <a href="@Url.Action("Details", "Home", new {id = movie.Id})">
+                    <i class="fas fa-film"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
