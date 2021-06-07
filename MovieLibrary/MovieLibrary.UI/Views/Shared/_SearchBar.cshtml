@@ -1,14 +1,23 @@
-﻿<div class="form-row">
-    <div class="input-group mb-3">
-        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+﻿<div class="input-group mb-3">
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+    {
+        @Html.TextBox("SearchQuery", null, new
         {
-            @Html.TextBox("title")
-            <input type="text" class="form-control" placeholder="Search Title" aria-label="Search Title" 
-                   aria-describedby="searchBtn">
-            
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-outline-secondary" id="searchBtn">Search</button>
-            </div>
-        }
-    </div>
+            @class = "form-control",
+            placeholder = "Search Title",
+            aria_label = "Search Title",
+            aria_describedby="searchBtn"
+        })
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-secondary" id="searchBtn" value="Search">Search</button>
+        </div>
+        @*<input type="submit" value="Search">*@
+    }
 </div>
+
+@* <input type="text" class="form-control" placeholder="Search Title" aria-label="Search Title"  *@
+@*        aria-describedby="searchBtn"> *@
+
+@* <div class="input-group-append"> *@
+@*     <button type="submit" class="btn btn-outline-secondary" id="searchBtn">Search</button> *@
+@* </div> *@
