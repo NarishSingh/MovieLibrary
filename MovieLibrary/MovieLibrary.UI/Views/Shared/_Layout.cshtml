@@ -15,7 +15,7 @@
             @Html.ActionLink("Movie Library", "Index", "Home", new {area = ""},
                 new {@class = "navbar-brand"})
             @Html.ActionLink("Now Playing", "Index", "Home")
-            @Html.ActionLink("Search", "Search", "Search")
+            @Html.ActionLink("Search", "Search", "Home")
             
             @Html.Partial("_Search", new SearchRequestVM())
         </div>
@@ -35,6 +35,7 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
+<script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 @RenderSection("scripts", required: false)
 </body>
 </html>

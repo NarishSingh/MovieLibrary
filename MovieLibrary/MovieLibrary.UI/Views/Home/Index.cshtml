@@ -15,11 +15,10 @@
     <tr>
         <th>Title</th>
         <th>Release Date</th>
-        <th></th>
+        <th>View Details</th>
     </tr>
     </thead>
 
-    @*todo add font awesome icon -> on click, go to details page*@
     <tbody>
     @foreach (var movie in Model)
     {
@@ -28,7 +27,11 @@
                 <strong>@movie.Title</strong>
             </td>
             <td>@movie.ReleaseDate.ToString("d")</td>
-            <td></td>
+            <td>
+                <a href="@Url.Action("Details", "Home", new {id = movie.Id})">
+                    <i class="fas fa-film"></i>
+                </a>
+            </td>
         </tr>
     }
     </tbody>
