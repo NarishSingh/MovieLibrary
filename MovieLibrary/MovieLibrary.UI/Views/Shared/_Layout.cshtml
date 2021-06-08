@@ -26,37 +26,22 @@
                 @*     new {@class = "nav-link"}) *@
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        @using (Html.BeginForm("SearchTitle", "Home", FormMethod.Get, 
+            new {@class = "form-inline my-2 my-lg-0"}))
+        {
+            @Html.TextBox("query", "", new
             {
-                @Html.TextBox("query", "Search", new
-                {
-                    @class = "form-control",
-                    placeholder = "Search Title",
-                    aria_label = "Search Title",
-                    aria_describedby = "searchBtn"
-                })
-                <div class="input-group-append">
-                    @* <button type="submit" class="btn btn-outline-secondary" id="searchBtn" value="query">Search</button> *@
-                    <input type="submit" class="btn btn-outline-secondary" id="searchBtn" value="Search">
-                </div>
-            }
-        </form>
+                @class = "form-control",
+                placeholder = "Search Title",
+                aria_label = "Search Title",
+                aria_describedby = "searchBtn"
+            })
+            <div class="input-group-append">
+                <input type="submit" class="btn btn-outline-secondary" id="searchBtn" value="Search">
+            </div>
+        }
     </div>
 </nav>
-
-@* old *@
-@* <div class="navbar navbar-inverse navbar-fixed-top"> *@
-@*     <div class="container"> *@
-@*         <div class="navbar-header"> *@
-@*             @Html.ActionLink("Movie Library", "Index", "Home", new {area = ""}, *@
-@*                 new {@class = "navbar-brand"}) *@
-@*             @Html.ActionLink("Now Playing", "Index", "Home") *@
-@*             @Html.ActionLink("Search", "Search", "Home") *@
-@*             @Html.Partial("_SearchBar") *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
 
 <div class="container body-content">
     @RenderBody()

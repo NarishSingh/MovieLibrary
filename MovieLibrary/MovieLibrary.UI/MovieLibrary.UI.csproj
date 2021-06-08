@@ -252,8 +252,7 @@
         <Content Include="Sql\MovieLibrary.sql" />
         <Content Include="Sql\MovieLibraryDDL.sql" />
         <Content Include="Sql\sporcs.sql" />
-        <Content Include="Views\Home\Search.cshtml" />
-        <Content Include="Views\Shared\_SearchBar.cshtml" />
+        <Content Include="Views\Home\SearchTitle.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>
