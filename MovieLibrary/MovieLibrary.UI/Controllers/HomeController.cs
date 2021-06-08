@@ -19,10 +19,10 @@ namespace MovieLibrary.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search(string title)
+        public ActionResult Search(string query)
         {
             //TODO validate query with regex, look up form validation on bootstrap
-            return View(_service.SearchByTitle(title));
+            return View(_service.SearchByTitle(query));
         }
 
         [HttpGet]
