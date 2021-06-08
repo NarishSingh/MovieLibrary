@@ -8,18 +8,54 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        @*TODO Make into a proper navbar*@
-        <div class="navbar-header">
-            @Html.ActionLink("Movie Library", "Index", "Home", new {area = ""},
-                new {@class = "navbar-brand"})
-            @Html.ActionLink("Now Playing", "Index", "Home")
-            @Html.ActionLink("Search", "Search", "Home")
-            @Html.Partial("_SearchBar")
-        </div>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Movie Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#movieLibraryNav"
+            aria-controls="movieLibraryNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="movieLibraryNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Now Playing", "Index", "Home",
+                    new {area = ""}, new {@class = "nav-link"})
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Search", "Search", "Home")
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+            {
+                @Html.TextBox("query", null, new
+                {
+                    @class = "form-control",
+                    placeholder = "Search Title",
+                    aria_label = "Search Title",
+                    aria_describedby = "searchBtn"
+                })
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary" id="searchBtn" value="query">Search</button>
+                </div>
+            }
+        </form>
     </div>
-</div>
+</nav>
+
+@* old *@
+@* <div class="navbar navbar-inverse navbar-fixed-top"> *@
+@*     <div class="container"> *@
+@*         <div class="navbar-header"> *@
+@*             @Html.ActionLink("Movie Library", "Index", "Home", new {area = ""}, *@
+@*                 new {@class = "navbar-brand"}) *@
+@*             @Html.ActionLink("Now Playing", "Index", "Home") *@
+@*             @Html.ActionLink("Search", "Search", "Home") *@
+@*             @Html.Partial("_SearchBar") *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
 <div class="container body-content">
     @RenderBody()
 
