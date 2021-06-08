@@ -27,7 +27,7 @@
             </li>
         </ul>
         @using (Html.BeginForm("SearchTitle", "Home", FormMethod.Get, 
-            new {@class = "form-inline my-2 my-lg-0"}))
+            new {@class = "form-inline my-2 my-lg-0", id = "titleSearchBar"}))
         {
             @Html.TextBox("query", "", new
             {
@@ -56,8 +56,23 @@
 </div>
 
 @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap")
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $("form[id='titleSearchBar']").validate({
+            rules: {
+                'query': {
+                    required: true
+                }
+            },
+            errorPlacement: function() {
+              return false; //no error msg, just highlight the box
+            }
+        })
+    })
+</script>
 @RenderSection("scripts", required: false)
 </body>
 </html>
