@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using MovieLibrary.Service;
- 
+
 namespace MovieLibrary.UI.Controllers
 {
     public class HomeController : Controller
@@ -11,18 +12,22 @@ namespace MovieLibrary.UI.Controllers
         /// <summary>
         /// GET - index page displaying titles currently playing
         /// </summary>
-        /// <returns>ActionResult for Index View, with a model containing a IEnumerable of MovieShortItem's</returns>
+        /// <returns>View containing model with all currently screening movie titles</returns>
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_service.SearchNowPlaying());
+            return View(await _service.SearchNowPlaying());
         }
 
+        /// <summary>
+        /// GET - search results page displaying titles matching search query
+        /// </summary>
+        /// <param name="query">string for search query</param>
+        /// <returns>View containing titles for search results</returns>
         [HttpGet]
-        public ActionResult SearchTitle(string query)
+        public async Task<ActionResult> SearchTitle(string query)
         {
-            //TODO validate query with regex, look up form validation on bootstrap
-            return View(_service.SearchByTitle(query));
+            return View(await _service.SearchByTitle(query));
         }
 
         [HttpGet]
