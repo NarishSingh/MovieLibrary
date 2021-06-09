@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MovieLibrary.Data;
 using MovieLibrary.Models.API;
 using NUnit.Framework;
@@ -18,9 +19,9 @@ namespace MovieLibrary.Test
         }
 
         [Test]
-        public void SearchByTitleTest()
+        public async Task SearchByTitleTest()
         {
-            IEnumerable<MovieShortItem> movies = _movieApi.SearchByTitle("matrix");
+            IEnumerable<MovieShortItem> movies = await _movieApi.SearchByTitle("matrix");
 
             Assert.IsNotNull(movies);
             Assert.AreEqual(20, movies.Count());
@@ -28,36 +29,36 @@ namespace MovieLibrary.Test
         }
 
         [Test]
-        public void SearchByTitleFail()
+        public async Task SearchByTitleFail()
         {
-            IEnumerable<MovieShortItem> noMovie = _movieApi.SearchByTitle(" ");
-            
+            IEnumerable<MovieShortItem> noMovie = await _movieApi.SearchByTitle(" ");
+
             Assert.IsNull(noMovie);
         }
 
         [Test]
-        public void SearchMovieByIdTest()
+        public async Task SearchMovieByIdTest()
         {
-            MovieDetailedItem movie = _movieApi.SearchMovieById(603); //The Matrix
-            
+            MovieDetailedItem movie = await _movieApi.SearchMovieById(603); //The Matrix
+
             Assert.IsNotNull(movie);
             Assert.AreEqual("The Matrix", movie.Title);
             Assert.AreEqual(2, movie.Directors.Count()); //check for 2nd api call
         }
 
         [Test]
-        public void SearchByIdFail()
+        public async Task SearchByIdFail()
         {
-            MovieDetailedItem noMovie = _movieApi.SearchMovieById(0);
+            MovieDetailedItem noMovie = await _movieApi.SearchMovieById(0);
 
             Assert.IsNull(noMovie);
         }
 
         [Test]
-        public void SearchNowPlayingTest()
+        public async Task SearchNowPlayingTest()
         {
-            IEnumerable<MovieShortItem> nowPlaying = _movieApi.SearchNowPlaying();
-            
+            IEnumerable<MovieShortItem> nowPlaying = await _movieApi.SearchNowPlaying();
+
             Assert.IsNotNull(nowPlaying);
             Assert.AreEqual(20, nowPlaying.Count());
         }

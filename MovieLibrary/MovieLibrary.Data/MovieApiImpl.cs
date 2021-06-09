@@ -13,34 +13,7 @@ namespace MovieLibrary.Data
         private static readonly HttpClient Client = new HttpClient();
         private const string ApiKey = "d5150b3ec8f4f8de295a897de8623169";
 
-        public IEnumerable<MovieShortItem> SearchByTitle(string title)
-        {
-            Task<IEnumerable<MovieShortItem>> task = Task<IEnumerable<MovieShortItem>>.Factory
-                .StartNew(() => GetSearch(title).Result);
-            return task.Result; //use result to get the IEnumerable out of the task
-        }
-
-        public MovieDetailedItem SearchMovieById(int movieId)
-        {
-            Task<MovieDetailedItem> task = Task<MovieDetailedItem>.Factory
-                .StartNew(() => GetMovieDetails(movieId).Result);
-            return task.Result;
-        }
-
-        public IEnumerable<MovieShortItem> SearchNowPlaying()
-        {
-            Task<IEnumerable<MovieShortItem>> task = Task<IEnumerable<MovieShortItem>>.Factory
-                .StartNew(() => GetNowPlaying().Result);
-            return task.Result;
-        }
-
-        /*TASKS*/
-        /// <summary>
-        /// Perform search using the MovieDb API
-        /// </summary>
-        /// <param name="title">Title string to search for</param>
-        /// <returns>Task which</returns>
-        private async Task<IEnumerable<MovieShortItem>> GetSearch(string title)
+        public async Task<IEnumerable<MovieShortItem>> SearchByTitle(string title)
         {
             SearchResults movieList = new SearchResults();
 
@@ -66,12 +39,7 @@ namespace MovieLibrary.Data
             return movieList.Movies; //return the IEnumerable
         }
 
-        /// <summary>
-        /// Get details for a movie
-        /// </summary>
-        /// <param name="movieId">int for a valid movie id</param>
-        /// <returns>Task with the MovieDetailedItem with movie info</returns>
-        private async Task<MovieDetailedItem> GetMovieDetails(int movieId)
+        public async Task<MovieDetailedItem> SearchMovieById(int movieId)
         {
             MovieDetailedItem movie = null;
 
@@ -114,11 +82,7 @@ namespace MovieLibrary.Data
             return movie;
         }
 
-        /// <summary>
-        /// Get movies currently playing
-        /// </summary>
-        /// <returns>Task with a IEnumerable of movie short items</returns>
-        private async Task<IEnumerable<MovieShortItem>> GetNowPlaying()
+        public async Task<IEnumerable<MovieShortItem>> SearchNowPlaying()
         {
             SearchResults nowPlaying;
 
