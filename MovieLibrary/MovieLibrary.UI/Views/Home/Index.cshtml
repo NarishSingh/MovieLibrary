@@ -14,8 +14,8 @@
     <thead>
     <tr>
         <th>Title</th>
-        <th>Release Date</th>
-        <th>View Details</th>
+        <th style="text-align: center">Release Date</th>
+        <th style="text-align: center">View Details</th>
     </tr>
     </thead>
 
@@ -24,10 +24,10 @@
     {
         <tr>
             <td>
-                <strong>@movie.Title</strong>
+                <i>@movie.Title</i>
             </td>
-            <td>@movie.ReleaseDate.ToString("d")</td>
-            <td>
+            <td style="text-align: center">@movie.ReleaseDate.ToString("d")</td>
+            <td style="text-align: center">
                 <a href="@Url.Action("Details", "Home", new {id = movie.Id})">
                     <i class="fas fa-film"></i>
                 </a>

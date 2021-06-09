@@ -27,7 +27,7 @@ namespace MovieLibrary.UI.Controllers
         [HttpGet]
         public async Task<ActionResult> SearchTitle(string query)
         {
-            return View(await _service.SearchByTitle(query));
+            return View(await _service.SearchByTitle(query)); //todo this is failing on "spider man" -> [JsonSerializationException: Error converting value {null} to type 'System.DateTime'. Path 'results[9].release_date', line 1, position 6542.]
         }
 
         [HttpGet]
