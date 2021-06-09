@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MovieLibrary.Data;
 using MovieLibrary.Models.API;
 using MovieLibrary.Models.Db;
@@ -18,20 +19,20 @@ namespace MovieLibrary.Service
             _repoDao = new MovieRepoImpl();
         }
 
-        public IEnumerable<MovieShortItem> SearchNowPlaying()
+        public async Task<IEnumerable<MovieShortItem>> SearchNowPlaying()
         {
-            return _apiDao.SearchNowPlaying();
+            return await _apiDao.SearchNowPlaying();
         }
 
-        public IEnumerable<MovieShortItem> SearchByTitle(string title)
+        public async Task<IEnumerable<MovieShortItem>> SearchByTitle(string title)
         {
-            return _apiDao.SearchByTitle(title);
+            return await _apiDao.SearchByTitle(title);
         }
 
-        public Movie GetMovieById(int id)
+        public async Task<Movie> GetMovieById(int id)
         {
             //get from api, read from db by title (id's will be different)
-            MovieDetailedItem fromApi = _apiDao.SearchMovieById(id);
+            MovieDetailedItem fromApi = await _apiDao.SearchMovieById(id);
             if (fromApi == null) return null; //if api call fails, movie doesn't exist
             
             //if not present in db, RepoId is null and likes/dislikes defaults to 0

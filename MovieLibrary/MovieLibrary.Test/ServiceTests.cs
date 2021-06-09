@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using MovieLibrary.Data;
 using MovieLibrary.Models.API;
 using MovieLibrary.Models.Service;
@@ -37,18 +38,18 @@ namespace MovieLibrary.Test
         }
 
         [Test]
-        public void SearchNowPlayingTest()
+        public async Task SearchNowPlayingTest()
         {
-            IEnumerable<MovieShortItem> nowPlaying = _service.SearchNowPlaying();
+            IEnumerable<MovieShortItem> nowPlaying = await _service.SearchNowPlaying();
 
             Assert.IsNotNull(nowPlaying);
             Assert.AreEqual(20, nowPlaying.Count());
         }
         
         [Test]
-        public void SearchByTitleTest()
+        public async Task SearchByTitleTest()
         {
-            IEnumerable<MovieShortItem> movies = _service.SearchByTitle("matrix");
+            IEnumerable<MovieShortItem> movies = await _service.SearchByTitle("matrix");
 
             Assert.IsNotNull(movies);
             Assert.AreEqual(20, movies.Count());
@@ -56,18 +57,18 @@ namespace MovieLibrary.Test
         }
         
         [Test]
-        public void SearchByTitleFail()
+        public async Task SearchByTitleFail()
         {
-            IEnumerable<MovieShortItem> noMovie = _service.SearchByTitle(" ");
+            IEnumerable<MovieShortItem> noMovie = await _service.SearchByTitle(" ");
             
             Assert.IsNull(noMovie);
         }
 
         [Test]
-        public void SearchMovieByIdTest()
+        public async Task SearchMovieByIdTest()
         {
             //(4, 'The Matrix', 1, 0) - ApiId = 603
-            Movie matrix = _service.GetMovieById(603);
+            Movie matrix = await _service.GetMovieById(603);
 
             Assert.IsNotNull(matrix);
             Assert.IsNotNull(matrix.RepoId);
@@ -85,17 +86,17 @@ namespace MovieLibrary.Test
         }
         
         [Test]
-        public void SearchByIdFail()
+        public async Task SearchByIdFail()
         {
-            Movie fail = _service.GetMovieById(int.MaxValue);
+            Movie fail = await _service.GetMovieById(int.MaxValue);
 
             Assert.IsNull(fail);
         }
 
         [Test]
-        public void PersistLikeTest()
+        public async Task PersistLikeTest()
         {
-            Movie matrix = _service.GetMovieById(603);
+            Movie matrix = await _service.GetMovieById(603);
             
             matrix.Likes++;
             Movie addedLike = _service.PersistLikeDislike(matrix);
@@ -111,9 +112,9 @@ namespace MovieLibrary.Test
         }
 
         [Test]
-        public void PersistDislikeTest()
+        public async Task PersistDislikeTest()
         {
-            Movie matrix = _service.GetMovieById(603);
+            Movie matrix = await _service.GetMovieById(603);
             
             matrix.Dislikes++;
             Movie addedDislike = _service.PersistLikeDislike(matrix);
