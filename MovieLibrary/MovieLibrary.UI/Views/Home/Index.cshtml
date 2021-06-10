@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MovieLibrary.Models.API.MovieShortItem>
+﻿@using System.Web.Razor.Parser.SyntaxTree
+@model IEnumerable<MovieLibrary.Models.API.MovieShortItem>
 
 @{
     ViewBag.Title = "Now Playing";
@@ -26,7 +27,16 @@
             <td>
                 <i>@movie.Title</i>
             </td>
-            <td style="text-align: center">@movie.ReleaseDate.ToString("d")</td>
+            <td style="text-align: center">
+                @if (movie.ReleaseDate != null)
+                {
+                    @movie.ReleaseDate.GetValueOrDefault().ToString("d")
+                }
+                else
+                {
+                    <span>TBA</span>
+                }
+            </td>
             <td style="text-align: center">
                 <a href="@Url.Action("Details", "Home", new {id = movie.Id})">
                     <i class="fas fa-film"></i>

@@ -7,6 +7,6 @@ namespace MovieLibrary.Models.API
     {
         [JsonProperty("id")] public string Id { get; set; }
         [JsonProperty("title")] public string Title { get; set; }
-        [JsonProperty("release_date")] public DateTime ReleaseDate { get; set; }
+        [JsonProperty("release_date")] public DateTime? ReleaseDate { get; set; }
     }
 }

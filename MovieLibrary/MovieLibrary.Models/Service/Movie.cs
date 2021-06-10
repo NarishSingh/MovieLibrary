@@ -12,7 +12,7 @@ namespace MovieLibrary.Models.Service
         public int ApiId { get; set; } //id from MovieDb API
         public string Title { get; set; }
         public IEnumerable<string> Directors { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
         public string Description { get; set; }
         public string PosterPath { get; set; }
         public int Likes { get; set; }
