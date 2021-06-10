@@ -25,16 +25,12 @@
                 @*     new {@class = "nav-link"}) *@
             </li>
         </ul>
-        @using (Html.BeginForm("SearchTitle", "Home", FormMethod.Get, 
+        @* Search bar *@
+        @using (Html.BeginForm("SearchTitle", "Home", FormMethod.Get,
             new {@class = "form-inline my-2 my-lg-0", id = "titleSearchBar"}))
         {
-            @Html.TextBox("query", "", new
-            {
-                @class = "form-control",
-                placeholder = "Search Title",
-                aria_label = "Search Title",
-                aria_describedby = "searchBtn"
-            })
+            @Html.TextBox("query", "", new {@class = "form-control", placeholder = "Search Title", 
+                aria_label = "Search Title", aria_describedby = "searchBtn"})
             <div class="input-group-append">
                 <input type="submit" class="btn btn-outline-secondary" id="searchBtn" value="Search">
             </div>

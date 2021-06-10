@@ -80,7 +80,7 @@ namespace MovieLibrary.Test
         public void ReadMovieByTitleTest()
         {
             MovieDb first = _repo.ReadMovieByTitle("Test I");
-            
+
             Assert.NotNull(first);
             Assert.AreEqual(1, first.MovieId);
             Assert.AreEqual("Test I", first.MovieTitle);
@@ -159,7 +159,7 @@ namespace MovieLibrary.Test
 
             bool deleted = _repo.DeleteMovie(created.MovieId);
             IEnumerable<MovieDb> afterDel = _repo.ReadAllMovies();
-            
+
             Assert.AreEqual(7, original.Count());
             Assert.IsTrue(deleted);
             Assert.AreEqual(6, afterDel.Count());
@@ -169,7 +169,7 @@ namespace MovieLibrary.Test
         public void DeleteFail()
         {
             bool deleteFail = _repo.DeleteMovie(Int32.MinValue);
-            
+
             Assert.IsFalse(deleteFail);
         }
     }

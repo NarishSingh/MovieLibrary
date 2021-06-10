@@ -31,9 +31,9 @@ namespace MovieLibrary.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            throw new NotSupportedException();
+            return View(await _service.GetMovieById(id));
         }
     }
 }
