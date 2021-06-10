@@ -43,14 +43,26 @@
         </p>
 
         @* Like/Dislike buttons *@
-        @* TODO wire up *@
         <div class="row" style="justify-content: center; align-items: center;">
-            <button class="btn btn-outline-secondary" style="margin: 2px" onclick="">
+            <button type="button" class="btn btn-outline-secondary" style="margin: 2px" id="likeBtn">
                 <i class="far fa-heart"></i> Like | @Model.Likes
             </button>
-            <button class="btn btn-outline-dark" style="margin: 2px" onclick="">
+            <button type="button" class="btn btn-outline-dark" style="margin: 2px" id="dislikeBtn">
                 <i class="fas fa-heart-broken"></i> Dislike | @Model.Dislikes
             </button>
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    <script>
+        $('#likeBtn').click(function() {
+            document.location = '@Url.Action("AddLike", "Home", new {id = Model.ApiId})';
+        });
+        
+        $('#dislikeBtn').click(function() {
+          document.location = '@Url.Action("AddDislike", "Home", new {id = Model.ApiId})';
+        });
+    </script>
+}

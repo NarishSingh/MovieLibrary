@@ -1,6 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using MovieLibrary.Models.Service;
 using MovieLibrary.Service;
 
 namespace MovieLibrary.UI.Controllers
@@ -39,6 +39,36 @@ namespace MovieLibrary.UI.Controllers
         public async Task<ActionResult> Details(int id)
         {
             return View(await _service.GetMovieById(id));
+        }
+
+        /// <summary>
+        /// GET - Add a like to a movie
+        /// </summary>
+        /// <param name="id">int for the movie's id from the API</param>
+        /// <returns>Redirect to the Details GET action</returns>
+        [HttpGet]
+        public async Task<ActionResult> AddLike(int id)
+        {
+            Movie m = await _service.GetMovieById(id);
+            m.Likes++;
+            Movie persisted = _service.PersistLikeDislike(m);
+
+            return RedirectToAction("Details", "Home", new {id = persisted.ApiId});
+        }
+
+        /// <summary>
+        /// GET - Add a dislike to a movie
+        /// </summary>
+        /// <param name="id">int for the movie's id from the API</param>
+        /// <returns>Redirect to the Details GET action</returns>
+        [HttpGet]
+        public async Task<ActionResult> AddDislike(int id)
+        {
+            Movie m = await _service.GetMovieById(id);
+            m.Dislikes++;
+            Movie persisted = _service.PersistLikeDislike(m);
+
+            return RedirectToAction("Details", "Home", new {id = persisted.ApiId});
         }
     }
 }
