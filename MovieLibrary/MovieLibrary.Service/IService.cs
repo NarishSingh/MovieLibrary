@@ -23,7 +23,7 @@ namespace MovieLibrary.Service
         /// <summary>
         /// Get movie details
         /// </summary>
-        /// <param name="id">int for movie id</param>
+        /// <param name="id">int for valid movie id from MovieDb API</param>
         /// <returns>Task with Movie with all movie details and like/dislike counts</returns>
         Task<Movie> GetMovieById(int id);
 

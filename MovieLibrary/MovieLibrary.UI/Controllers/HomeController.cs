@@ -27,9 +27,14 @@ namespace MovieLibrary.UI.Controllers
         [HttpGet]
         public async Task<ActionResult> SearchTitle(string query)
         {
-            return View(await _service.SearchByTitle(query)); //todo this is failing on "spider man" -> [JsonSerializationException: Error converting value {null} to type 'System.DateTime'. Path 'results[9].release_date', line 1, position 6542.]
+            return View(await _service.SearchByTitle(query));
         }
 
+        /// <summary>
+        /// GET - get details for a movie entry
+        /// </summary>
+        /// <param name="id">int for a valid movie id for MovieDb</param>
+        /// <returns>View containing detailed movie info and like/dislike counts</returns>
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
