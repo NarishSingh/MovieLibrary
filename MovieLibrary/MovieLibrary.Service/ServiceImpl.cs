@@ -34,7 +34,10 @@ namespace MovieLibrary.Service
             //get from api, read from db by title (id's will be different)
             MovieDetailedItem fromApi = await _apiDao.SearchMovieById(id);
             if (fromApi == null) return null; //if api call fails, movie doesn't exist
-            
+
+            //unreleased movies may not have poster
+            string fullPosterPath = fromApi.PosterPath != null ? ImagePath + fromApi.PosterPath : null;
+
             //if not present in db, RepoId is null and likes/dislikes defaults to 0
             MovieDb fromRepo = _repoDao.ReadMovieByTitle(fromApi.Title);
             if (fromRepo == null)
@@ -47,7 +50,7 @@ namespace MovieLibrary.Service
                     Directors = fromApi.Directors,
                     ReleaseDate = fromApi.ReleaseDate,
                     Description = fromApi.Description,
-                    PosterPath = ImagePath + fromApi.PosterPath,
+                    PosterPath = fullPosterPath,
                     Likes = 0,
                     Dislikes = 0
                 };
@@ -61,7 +64,7 @@ namespace MovieLibrary.Service
                 Directors = fromApi.Directors,
                 ReleaseDate = fromApi.ReleaseDate,
                 Description = fromApi.Description,
-                PosterPath = ImagePath + fromApi.PosterPath,
+                PosterPath = fullPosterPath,
                 Likes = fromRepo.Likes,
                 Dislikes = fromRepo.Dislikes
             };
@@ -74,7 +77,8 @@ namespace MovieLibrary.Service
             {
                 MovieDb update = new MovieDb
                 {
-                    MovieId = m.RepoId.GetValueOrDefault(), //will never be null due to check, but required to stop error
+                    MovieId = m.RepoId
+                        .GetValueOrDefault(), //will never be null due to check, but required to stop error
                     MovieTitle = m.Title,
                     Likes = m.Likes,
                     Dislikes = m.Dislikes

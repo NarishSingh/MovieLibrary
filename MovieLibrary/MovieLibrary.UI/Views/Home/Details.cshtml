@@ -8,50 +8,22 @@
 <br>
 <h2>@Model.Title</h2>
 
-@* TODO need to make elements not show if info isn't there *@
 <div class="row">
-    <div class="col">
-        <img src="@Model.PosterPath" alt="Movie Poster">
-    </div>
-    <div class="col">
-        <p>
-            <strong>@Model.Title</strong>
-        </p>
-        <p>
-            Directed by:
-            @foreach (string director in Model.Directors)
-            {
-                <span>@director</span>
-            }
-        </p>
-        <p>
-            @if (Model.ReleaseDate == null)
-            {
-                <span>Coming Soon</span>
-            }
-            else if (Model.ReleaseDate > DateTime.Today)
-            {
-                <span>In theaters @Model.ReleaseDate.GetValueOrDefault().ToString("d")</span>
-            }
-            else
-            {
-                <span>Released on @Model.ReleaseDate.GetValueOrDefault().ToString("d")</span>
-            }
-        </p>
-        <p>
-            <i>@Model.Description</i>
-        </p>
-
-        @* Like/Dislike buttons *@
-        <div class="row" style="justify-content: center; align-items: center;">
-            <button type="button" class="btn btn-outline-secondary" style="margin: 2px" id="likeBtn">
-                <i class="far fa-heart"></i> Like | @Model.Likes
-            </button>
-            <button type="button" class="btn btn-outline-dark" style="margin: 2px" id="dislikeBtn">
-                <i class="fas fa-heart-broken"></i> Dislike | @Model.Dislikes
-            </button>
+    @if (Model.PosterPath == null)
+    {
+        <div class="col"style="text-align: center">
+            @Html.Partial("_DetailsDiv")
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="col">
+            <img src="@Model.PosterPath" alt="Movie Poster">
+        </div>
+        <div class="col">
+            @Html.Partial("_DetailsDiv")
+        </div>
+    }
 </div>
 
 @section scripts

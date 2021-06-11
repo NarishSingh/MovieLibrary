@@ -14,7 +14,7 @@ namespace MovieLibrary.Models.Service
         public IEnumerable<string> Directors { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public string Description { get; set; }
-        public string PosterPath { get; set; }
+        public string? PosterPath { get; set; }
         public int Likes { get; set; }
         public int Dislikes { get; set; }
     }

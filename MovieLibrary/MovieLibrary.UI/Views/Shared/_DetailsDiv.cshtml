@@ -1,0 +1,39 @@
+﻿@model MovieLibrary.Models.Service.Movie
+
+@*Movie details, info displays dynamically*@
+<p>
+    <strong>@Model.Title</strong>
+</p>
+<p>
+    @if (Model.Directors.Any())
+    {
+        <span>Directed by: @string.Join(", ", Model.Directors)</span>
+    }
+</p>
+<p>
+    @if (Model.ReleaseDate == null)
+    {
+        <span>Coming Soon</span>
+    }
+    else if (Model.ReleaseDate > DateTime.Today)
+    {
+        <span>In theaters @Model.ReleaseDate.GetValueOrDefault().ToString("d")</span>
+    }
+    else
+    {
+        <span>Released on @Model.ReleaseDate.GetValueOrDefault().ToString("d")</span>
+    }
+</p>
+<p>
+    <i>@Model.Description</i>
+</p>
+
+@* Like/Dislike buttons *@
+<div class="row" style="justify-content: center; align-items: center;">
+    <button type="button" class="btn btn-outline-secondary" style="margin: 2px" id="likeBtn">
+        <i class="far fa-heart"></i> Like | @Model.Likes
+    </button>
+    <button type="button" class="btn btn-outline-dark" style="margin: 2px" id="dislikeBtn">
+        <i class="fas fa-heart-broken"></i> Dislike | @Model.Dislikes
+    </button>
+</div>

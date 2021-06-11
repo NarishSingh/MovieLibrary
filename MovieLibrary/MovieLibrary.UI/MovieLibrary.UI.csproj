@@ -253,7 +253,9 @@
         <Content Include="Sql\sporcs.sql" />
         <Content Include="Views\Home\Details.cshtml" />
         <Content Include="Views\Home\SearchTitle.cshtml" />
+        <Content Include="Views\Shared\_DetailsDiv.cshtml" />
         <Content Include="Views\Shared\_Favicons.cshtml" />
+        <Content Include="Views\Shared\_ResultsTable.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>
