@@ -21,6 +21,7 @@
         <IISExpressUseClassicPipelineMode />
         <UseGlobalApplicationHostFile />
         <NuGetPackageImportStamp />
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -118,6 +119,7 @@
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
+        <Compile Include="Models\SearchVM.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
@@ -271,7 +273,6 @@
     <ItemGroup>
         <Folder Include="App_Data" />
         <Folder Include="Content\Favicon" />
-        <Folder Include="Models" />
     </ItemGroup>
     <ItemGroup>
         <None Include="packages.config" />
