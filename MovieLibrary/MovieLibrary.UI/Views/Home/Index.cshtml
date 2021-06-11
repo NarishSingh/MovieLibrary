@@ -31,8 +31,8 @@
         {
             if (movie == Model.First())
             {
-                <div class="carousel-item active">
-                    <img src="@movie.PosterPath" class="d-block w-100" alt="...">
+                <div class="carousel-item active" style="height: 600px">
+                    <img src="@movie.PosterPath" class="d-block h-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>@movie.Title</h5>
                         <p>@movie.ReleaseDate.GetValueOrDefault().ToString("d")</p>
@@ -41,8 +41,8 @@
             }
             else
             {
-                <div class="carousel-item">
-                    <img src="@movie.PosterPath" class="d-block w-100" alt="...">
+                <div class="carousel-item" style="height: 600px">
+                    <img src="@movie.PosterPath" class="d-block h-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>@movie.Title</h5>
                         <p>@movie.ReleaseDate.GetValueOrDefault().ToString("d")</p>
@@ -62,4 +62,5 @@
     </a>
 </div>
 
+<br>
 @Html.Partial("_ResultsTable")
