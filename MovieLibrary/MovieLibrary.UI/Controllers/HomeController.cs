@@ -31,19 +31,7 @@ namespace MovieLibrary.UI.Controllers
         [HttpGet]
         public async Task<ActionResult> SearchTitle(string query)
         {
-            SearchVM model = new SearchVM
-            {
-                Results = await _service.SearchByTitle(query),
-                Top3 = new List<Movie>()
-            };
-            
-            //top 3 results for display
-            foreach (MovieShortItem movie in model.Results.Take(3))
-            {
-                model.Top3 = model.Top3.Append(await _service.GetMovieById(movie.Id));
-            }
-
-            return View(model);
+            return View(await _service.SearchByTitle(query));
         }
 
         /// <summary>

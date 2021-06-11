@@ -11,7 +11,6 @@ namespace MovieLibrary.Service
     {
         private IMovieApi _apiDao;
         private IMovieRepo _repoDao;
-        private const string ImagePath = "https://image.tmdb.org/t/p/w500"; //default 500px width
 
         public ServiceImpl()
         {
@@ -35,9 +34,6 @@ namespace MovieLibrary.Service
             MovieDetailedItem fromApi = await _apiDao.SearchMovieById(id);
             if (fromApi == null) return null; //if api call fails, movie doesn't exist
 
-            //unreleased movies may not have poster
-            string fullPosterPath = fromApi.PosterPath != null ? ImagePath + fromApi.PosterPath : null;
-
             //if not present in db, RepoId is null and likes/dislikes defaults to 0
             MovieDb fromRepo = _repoDao.ReadMovieByTitle(fromApi.Title);
             if (fromRepo == null)
@@ -50,7 +46,7 @@ namespace MovieLibrary.Service
                     Directors = fromApi.Directors,
                     ReleaseDate = fromApi.ReleaseDate,
                     Description = fromApi.Description,
-                    PosterPath = fullPosterPath,
+                    PosterPath = fromApi.PosterPath,
                     Likes = 0,
                     Dislikes = 0
                 };
@@ -64,7 +60,7 @@ namespace MovieLibrary.Service
                 Directors = fromApi.Directors,
                 ReleaseDate = fromApi.ReleaseDate,
                 Description = fromApi.Description,
-                PosterPath = fullPosterPath,
+                PosterPath = fromApi.PosterPath ,
                 Likes = fromRepo.Likes,
                 Dislikes = fromRepo.Dislikes
             };

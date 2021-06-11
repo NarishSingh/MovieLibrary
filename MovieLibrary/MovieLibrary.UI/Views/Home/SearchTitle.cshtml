@@ -1,4 +1,4 @@
-﻿@model MovieLibrary.UI.Models.SearchVM
+﻿@model IEnumerable<MovieLibrary.Models.API.MovieShortItem>
 
 @{
     ViewBag.Title = "Search Titles";
@@ -10,7 +10,7 @@
 
 @* Top 3 results *@
 <div class="row">
-    @foreach (var topResult in Model.Top3)
+    @foreach (var topResult in Model.Take(3))
     {
         <div class="col" style="text-align: center" id="topMatch">
             @if (topResult.PosterPath != null)
@@ -20,7 +20,7 @@
 
             <p>
                 @topResult.Title
-                <a href="@Url.Action("Details", "Home", new {id = topResult.ApiId})">
+                <a href="@Url.Action("Details", "Home", new {id = topResult.Id})">
                     <i class="fas fa-film"></i>
                 </a>
             </p>
@@ -29,4 +29,4 @@
 </div>
 
 @* Results Table *@
-@Html.Partial("_ResultsTable", Model.Results)
+@Html.Partial("_ResultsTable")

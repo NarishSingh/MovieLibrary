@@ -12,6 +12,7 @@ namespace MovieLibrary.Data
     {
         private static readonly HttpClient Client = new HttpClient();
         private const string ApiKey = "d5150b3ec8f4f8de295a897de8623169";
+        private const string ImagePath = "https://image.tmdb.org/t/p/w500"; //default 500px width
 
         public async Task<IEnumerable<MovieShortItem>> SearchByTitle(string title)
         {
@@ -33,9 +34,15 @@ namespace MovieLibrary.Data
                     //convert JSON to string and deserialize to root JSON array container obj
                     string body = await response.Content.ReadAsStringAsync();
                     movieList = JsonConvert.DeserializeObject<SearchResults>(body);
+                    
+                    //process movie poster paths
+                    foreach (MovieShortItem movie in movieList.Movies)
+                    {
+                        movie.PosterPath = movie.PosterPath != null ? ImagePath + movie.PosterPath : null;
+                    }
                 }
             }
-
+            
             return movieList.Movies; //return the IEnumerable
         }
 
@@ -76,6 +83,8 @@ namespace MovieLibrary.Data
                             .Where(crewMember => crewMember.Job == "Director")
                             .Select(director => director.Name);
                     }
+                    
+                    movie.PosterPath = movie.PosterPath != null ? ImagePath + movie.PosterPath : null;
                 }
             }
 
@@ -99,6 +108,12 @@ namespace MovieLibrary.Data
 
                 string body = await response.Content.ReadAsStringAsync();
                 nowPlaying = JsonConvert.DeserializeObject<SearchResults>(body);
+                
+                //process movie poster paths
+                foreach (MovieShortItem movie in nowPlaying.Movies)
+                {
+                    movie.PosterPath = movie.PosterPath != null ? ImagePath + movie.PosterPath : null;
+                }
             }
 
             return nowPlaying.Movies;
