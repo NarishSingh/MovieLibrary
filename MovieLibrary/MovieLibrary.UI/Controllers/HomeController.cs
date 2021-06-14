@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using MovieLibrary.Models.API;
 using MovieLibrary.Models.Service;
 using MovieLibrary.Service;
-using MovieLibrary.UI.Models;
 
 namespace MovieLibrary.UI.Controllers
 {

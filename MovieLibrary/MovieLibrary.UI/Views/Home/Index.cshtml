@@ -14,7 +14,6 @@
 @* Carousel *@
 <div id="movieCaro" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-
         @for (int i = 0; i < Model.Count(); i++)
         {
             if (i == 0)
@@ -27,13 +26,14 @@
     </ol>
 
     <div class="carousel-inner">
+        @* TODO figure out how to center the poster *@
         @foreach (var movie in Model)
         {
             if (movie == Model.First())
             {
                 <div class="carousel-item active" style="height: 600px">
-                    <img src="@movie.PosterPath" class="d-block h-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
+                    <img src="@movie.PosterPath" class="d-block w-100" alt="Movie Poster">
+                    <div class="carousel-caption d-none d-md-block" style="background: black; opacity: 0.8;">
                         <h5>@movie.Title</h5>
                         <p>@movie.ReleaseDate.GetValueOrDefault().ToString("d")</p>
                     </div>
@@ -42,8 +42,8 @@
             else
             {
                 <div class="carousel-item" style="height: 600px">
-                    <img src="@movie.PosterPath" class="d-block h-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
+                    <img src="@movie.PosterPath" class="d-block w-100" alt="Movie Poster">
+                    <div class="carousel-caption d-none d-md-block" style="background: black; opacity: 0.8;">
                         <h5>@movie.Title</h5>
                         <p>@movie.ReleaseDate.GetValueOrDefault().ToString("d")</p>
                     </div>
