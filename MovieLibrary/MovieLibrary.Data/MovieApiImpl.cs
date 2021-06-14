@@ -34,7 +34,7 @@ namespace MovieLibrary.Data
                     //convert JSON to string and deserialize to root JSON array container obj
                     string body = await response.Content.ReadAsStringAsync();
                     movieList = JsonConvert.DeserializeObject<SearchResults>(body);
-                    
+
                     //process movie poster paths
                     foreach (MovieShortItem movie in movieList.Movies)
                     {
@@ -42,7 +42,7 @@ namespace MovieLibrary.Data
                     }
                 }
             }
-            
+
             return movieList.Movies; //return the IEnumerable
         }
 
@@ -68,9 +68,9 @@ namespace MovieLibrary.Data
                     HttpRequestMessage crewRequest = new HttpRequestMessage
                     {
                         Method = HttpMethod.Get,
-                        RequestUri =
-                            new Uri(
-                                $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}&language=en-US")
+                        RequestUri = new Uri(
+                            $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}&language=en-US"
+                        )
                     };
 
                     using (HttpResponseMessage crewResponse = await Client.SendAsync(crewRequest))
@@ -83,25 +83,30 @@ namespace MovieLibrary.Data
                             .Where(crewMember => crewMember.Job == "Director")
                             .Select(director => director.Name);
                     }
-                    
+
                     //get trailer, youtube links for simplicity
                     HttpRequestMessage trailerRequest = new HttpRequestMessage
                     {
                         Method = HttpMethod.Get,
-                        RequestUri =  new Uri($"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US")
+                        RequestUri = new Uri(
+                            $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US"
+                        )
                     };
 
                     using (HttpResponseMessage trailerResponse = await Client.SendAsync(trailerRequest))
                     {
                         string trailerBody = await trailerResponse.Content.ReadAsStringAsync();
                         TrailerResults trailerResults = JsonConvert.DeserializeObject<TrailerResults>(trailerBody);
-                        
-                        //LINQ to grab links
+
+                        //LINQ to grab links to a dictionary
                         movie.TrailerPaths = trailerResults.Trailers
                             .Where(trailer => trailer.Site == "YouTube")
-                            .Select(ytTrailer => $"https://www.youtube.com/watch?v={ytTrailer.Key}");
+                            .ToDictionary(
+                                ytTrailer => ytTrailer.TrailerName,
+                                ytTrailer => $"https://www.youtube.com/watch?v={ytTrailer.Key}"
+                            );
                     }
-                    
+
                     //process poster path
                     movie.PosterPath = movie.PosterPath != null ? ImagePath + movie.PosterPath : null;
                 }
@@ -127,7 +132,7 @@ namespace MovieLibrary.Data
 
                 string body = await response.Content.ReadAsStringAsync();
                 nowPlaying = JsonConvert.DeserializeObject<SearchResults>(body);
-                
+
                 //process movie poster paths
                 foreach (MovieShortItem movie in nowPlaying.Movies)
                 {

@@ -30,15 +30,16 @@
 <p>
     @if (Model.TrailerLinks.Any())
     {
+        /*Dropdown menu with trailer links on youtube, done to reduce page clutter*/
         <div class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                 Trailers
             </button>
             <div class="dropdown-menu">
-                @foreach (var link in Model.TrailerLinks)
+                @foreach (var trailerInfo in Model.TrailerLinks)
                 {
-                    <a class="dropdown-item" href="@link">@link</a>
+                    <a class="dropdown-item" href="@trailerInfo.Value">@trailerInfo.Key</a>
                 }
             </div>
         </div>

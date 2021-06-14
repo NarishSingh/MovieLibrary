@@ -75,8 +75,7 @@ namespace MovieLibrary.Service
             {
                 MovieDb update = new MovieDb
                 {
-                    MovieId = m.RepoId
-                        .GetValueOrDefault(), //will never be null due to check, but required to stop error
+                    MovieId = m.RepoId.GetValueOrDefault(), //will never be null, but required to stop error
                     MovieTitle = m.Title,
                     Likes = m.Likes,
                     Dislikes = m.Dislikes

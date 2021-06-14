@@ -82,11 +82,11 @@ namespace MovieLibrary.Test
                 matrix.Description);
             Assert.AreEqual("https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg", matrix.PosterPath);
             Assert.AreEqual(
-                new List<string>
+                new Dictionary<string, string>
                 {
-                    "https://www.youtube.com/watch?v=m8e-FF8MsqU", 
-                    "https://www.youtube.com/watch?v=L0fw0WzFaBM",
-                    "https://www.youtube.com/watch?v=qEXv-rVWAu8"
+                    {"Matrix Trailer HD (1999)", "https://www.youtube.com/watch?v=m8e-FF8MsqU"},
+                    {"The Matrix - 20th Anniversary - Warner Bros. UK", "https://www.youtube.com/watch?v=L0fw0WzFaBM"},
+                    {"The Matrix", "https://www.youtube.com/watch?v=qEXv-rVWAu8"}
                 },
                 matrix.TrailerLinks
             );
