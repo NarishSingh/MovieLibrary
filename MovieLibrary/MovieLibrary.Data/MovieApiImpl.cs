@@ -84,6 +84,25 @@ namespace MovieLibrary.Data
                             .Select(director => director.Name);
                     }
                     
+                    //get trailer, youtube links for simplicity
+                    HttpRequestMessage trailerRequest = new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Get,
+                        RequestUri =  new Uri($"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US")
+                    };
+
+                    using (HttpResponseMessage trailerResponse = await Client.SendAsync(trailerRequest))
+                    {
+                        string trailerBody = await trailerResponse.Content.ReadAsStringAsync();
+                        TrailerResults trailerResults = JsonConvert.DeserializeObject<TrailerResults>(trailerBody);
+                        
+                        //LINQ to grab links
+                        movie.TrailerPaths = trailerResults.Trailers
+                            .Where(trailer => trailer.Site == "YouTube")
+                            .Select(ytTrailer => $"https://www.youtube.com/watch?v={ytTrailer.Key}");
+                    }
+                    
+                    //process poster path
                     movie.PosterPath = movie.PosterPath != null ? ImagePath + movie.PosterPath : null;
                 }
             }

@@ -49,6 +49,8 @@
         <Compile Include="API\MovieDetailedItem.cs" />
         <Compile Include="API\MovieShortItem.cs" />
         <Compile Include="API\SearchResults.cs" />
+        <Compile Include="API\Trailer.cs" />
+        <Compile Include="API\TrailerResults.cs" />
         <Compile Include="Db\MovieDb.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Service\Movie.cs" />

@@ -43,7 +43,8 @@ namespace MovieLibrary.Test
 
             Assert.IsNotNull(movie);
             Assert.AreEqual("The Matrix", movie.Title);
-            Assert.AreEqual(2, movie.Directors.Count()); //check for 2nd api call
+            Assert.AreEqual(2, movie.Directors.Count()); //check for directors api call
+            Assert.AreEqual(3, movie.TrailerPaths.Count()); //check for trailers api call
         }
 
         [Test]

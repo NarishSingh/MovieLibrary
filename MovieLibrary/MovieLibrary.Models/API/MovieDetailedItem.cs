@@ -15,5 +15,6 @@ namespace MovieLibrary.Models.API
         [JsonProperty("release_date")] public DateTime? ReleaseDate { get; set; }
         [JsonProperty("overview")] public string Description { get; set; }
         [JsonProperty("poster_path")] public string? PosterPath { get; set; }
+        public IEnumerable<string>? TrailerPaths { get; set; } //not a JSON prop, needs separate API call
     }
 }
