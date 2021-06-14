@@ -45,7 +45,7 @@ namespace MovieLibrary.Test
             Assert.IsNotNull(nowPlaying);
             Assert.AreEqual(20, nowPlaying.Count());
         }
-        
+
         [Test]
         public async Task SearchByTitleTest()
         {
@@ -55,12 +55,12 @@ namespace MovieLibrary.Test
             Assert.AreEqual(20, movies.Count());
             Assert.IsNotNull(movies.FirstOrDefault(m => m.Title == "The Matrix"));
         }
-        
+
         [Test]
         public async Task SearchByTitleFail()
         {
             IEnumerable<MovieShortItem> noMovie = await _service.SearchByTitle(" ");
-            
+
             Assert.IsNull(noMovie);
         }
 
@@ -81,10 +81,19 @@ namespace MovieLibrary.Test
                 "underground insurgents fighting the vast and powerful computers who now rule the earth.",
                 matrix.Description);
             Assert.AreEqual("https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg", matrix.PosterPath);
+            Assert.AreEqual(
+                new List<string>
+                {
+                    "https://www.youtube.com/watch?v=m8e-FF8MsqU", 
+                    "https://www.youtube.com/watch?v=L0fw0WzFaBM",
+                    "https://www.youtube.com/watch?v=qEXv-rVWAu8"
+                },
+                matrix.TrailerLinks
+            );
             Assert.AreEqual(1, matrix.Likes);
             Assert.AreEqual(0, matrix.Dislikes);
         }
-        
+
         [Test]
         public async Task SearchByIdFail()
         {
@@ -97,7 +106,7 @@ namespace MovieLibrary.Test
         public async Task PersistLikeTest()
         {
             Movie matrix = await _service.GetMovieById(603);
-            
+
             matrix.Likes++;
             Movie addedLike = _service.PersistLikeDislike(matrix);
             Assert.IsNotNull(addedLike);
@@ -115,7 +124,7 @@ namespace MovieLibrary.Test
         public async Task PersistDislikeTest()
         {
             Movie matrix = await _service.GetMovieById(603);
-            
+
             matrix.Dislikes++;
             Movie addedDislike = _service.PersistLikeDislike(matrix);
             Assert.IsNotNull(addedDislike);

@@ -47,6 +47,7 @@ namespace MovieLibrary.Service
                     ReleaseDate = fromApi.ReleaseDate,
                     Description = fromApi.Description,
                     PosterPath = fromApi.PosterPath,
+                    TrailerLinks = fromApi.TrailerPaths,
                     Likes = 0,
                     Dislikes = 0
                 };
@@ -60,7 +61,8 @@ namespace MovieLibrary.Service
                 Directors = fromApi.Directors,
                 ReleaseDate = fromApi.ReleaseDate,
                 Description = fromApi.Description,
-                PosterPath = fromApi.PosterPath ,
+                PosterPath = fromApi.PosterPath,
+                TrailerLinks = fromApi.TrailerPaths,
                 Likes = fromRepo.Likes,
                 Dislikes = fromRepo.Dislikes
             };
