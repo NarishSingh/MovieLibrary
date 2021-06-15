@@ -22,8 +22,9 @@ namespace MovieLibrary.Data
             HttpRequestMessage request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://api.themoviedb.org/3/search/movie?api_key={ApiKey}&language=en-US" +
-                                     $"&query={title}&page=1&include_adult=false")
+                RequestUri = new Uri(
+                    $"https://api.themoviedb.org/3/search/movie?api_key={ApiKey}&language=en-US&query={title}&page=1&include_adult=false"
+                )
             };
 
             //send request, await
@@ -46,7 +47,7 @@ namespace MovieLibrary.Data
             return movieList.Movies; //return the IEnumerable
         }
 
-        public async Task<MovieDetailedItem> SearchMovieById(int movieId)
+        public async Task<MovieDetailedItem> SearchMovieById(int id)
         {
             MovieDetailedItem movie = null;
 
@@ -54,7 +55,7 @@ namespace MovieLibrary.Data
             HttpRequestMessage request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://api.themoviedb.org/3/movie/{movieId}?api_key={ApiKey}&language=en-US")
+                RequestUri = new Uri($"https://api.themoviedb.org/3/movie/{id}?api_key={ApiKey}&language=en-US")
             };
 
             using (HttpResponseMessage response = await Client.SendAsync(request))
@@ -69,7 +70,7 @@ namespace MovieLibrary.Data
                     {
                         Method = HttpMethod.Get,
                         RequestUri = new Uri(
-                            $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}&language=en-US"
+                            $"https://api.themoviedb.org/3/movie/{id}/credits?api_key={ApiKey}&language=en-US"
                         )
                     };
 
@@ -84,12 +85,12 @@ namespace MovieLibrary.Data
                             .Select(director => director.Name);
                     }
 
-                    //get trailer, youtube links for simplicity
+                    //GET trailers, youtube links for simplicity
                     HttpRequestMessage trailerRequest = new HttpRequestMessage
                     {
                         Method = HttpMethod.Get,
                         RequestUri = new Uri(
-                            $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US"
+                            $"https://api.themoviedb.org/3/movie/{id}/videos?api_key={ApiKey}&language=en-US"
                         )
                     };
 

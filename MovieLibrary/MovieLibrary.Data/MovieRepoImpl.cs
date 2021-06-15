@@ -9,7 +9,7 @@ namespace MovieLibrary.Data
 {
     public class MovieRepoImpl : IMovieRepo
     {
-        public MovieDb CreateMovie(MovieDb movieDb)
+        public MovieDb CreateMovie(MovieDb movie)
         {
             using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
@@ -23,27 +23,28 @@ namespace MovieLibrary.Data
                 );
 
                 //input
-                param.Add("@MovieTitle", movieDb.MovieTitle);
-                param.Add("@Likes", movieDb.Likes);
-                param.Add("@Dislikes", movieDb.Dislikes);
+                param.Add("@MovieTitle", movie.MovieTitle);
+                param.Add("@Likes", movie.Likes);
+                param.Add("@Dislikes", movie.Dislikes);
 
                 //execute and retrieve Id
                 c.Execute("MovieInsert", param, commandType: CommandType.StoredProcedure);
 
-                movieDb.MovieId = param.Get<int>("@MovieId");
+                movie.MovieId = param.Get<int>("@MovieId");
             }
 
-            return movieDb;
+            return movie;
         }
 
-        public MovieDb ReadMovieById(int movieId)
+        public MovieDb ReadMovieById(int id)
         {
             using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
                 DynamicParameters param = new DynamicParameters();
-                param.Add("@MovieId", movieId);
+                param.Add("@MovieId", id);
 
-                return c.Query<MovieDb>("MovieSelectById", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return c.Query<MovieDb>("MovieSelectById", param, commandType: CommandType.StoredProcedure)
+                    .FirstOrDefault();
             }
         }
 
@@ -54,7 +55,8 @@ namespace MovieLibrary.Data
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@MovieTitle", title);
 
-                return c.Query<MovieDb>("MovieSelectByTitle", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return c.Query<MovieDb>("MovieSelectByTitle", param, commandType: CommandType.StoredProcedure)
+                    .FirstOrDefault();
             }
         }
 
@@ -82,12 +84,12 @@ namespace MovieLibrary.Data
             }
         }
 
-        public bool DeleteMovie(int movieId)
+        public bool DeleteMovie(int id)
         {
             using (SqlConnection c = new SqlConnection(Settings.GetConnString()))
             {
                 DynamicParameters param = new DynamicParameters();
-                param.Add("@MovieId", movieId);
+                param.Add("@MovieId", id);
 
                 int delete = c.Execute("MovieDelete", param, commandType: CommandType.StoredProcedure);
 

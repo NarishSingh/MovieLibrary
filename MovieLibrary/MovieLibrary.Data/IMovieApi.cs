@@ -19,9 +19,9 @@ namespace MovieLibrary.Data
         /// <summary>
         /// Get details for a movie
         /// </summary>
-        /// <param name="movieId">int for a valid movie entry</param>
+        /// <param name="id">int for a valid movie entry</param>
         /// <returns>task MovieDetailedItem with info for a movie, null if search fails</returns>
-        Task<MovieDetailedItem> SearchMovieById(int movieId);
+        Task<MovieDetailedItem> SearchMovieById(int id);
 
         /// <summary>
         /// Get a list of movies currently playing

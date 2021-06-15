@@ -11,16 +11,16 @@ namespace MovieLibrary.Data
         /// <summary>
         /// Create a new movie record in db
         /// </summary>
-        /// <param name="movieDb">well form Movie obj</param>
+        /// <param name="movie">well form Movie obj</param>
         /// <returns>Successfully added movie from db</returns>
-        MovieDb CreateMovie(MovieDb movieDb);
+        MovieDb CreateMovie(MovieDb movie);
 
         /// <summary>
         /// Read a movie obj from db
         /// </summary>
-        /// <param name="movieId">int for a valid movie id</param>
+        /// <param name="id">int for a valid movie id</param>
         /// <returns>Movie obj corresponding to that id</returns>
-        MovieDb ReadMovieById(int movieId);
+        MovieDb ReadMovieById(int id);
         
         /// <summary>
         /// Read a movie obj from db
@@ -45,8 +45,8 @@ namespace MovieLibrary.Data
         /// <summary>
         /// Delete a movie record from Db
         /// </summary>
-        /// <param name="movieId">valid id for a movie record in db</param>
+        /// <param name="id">valid id for a movie record in db</param>
         /// <returns>True if deleted, false if failed</returns>
-        bool DeleteMovie(int movieId);
+        bool DeleteMovie(int id);
     }
 }
