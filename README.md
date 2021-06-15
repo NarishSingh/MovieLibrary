@@ -21,12 +21,12 @@ Running the app:
 2. Connect app to your db: you will need to put your password into 2 config files in the app for the backend to test and
    run the code. In both cases, you will add your `Password` in the `connectionString` value of the configuration. Note
    that by default system admin accounts are aliased 'sa', if you login differs you must update the `User Id` value
-   accordingly
+   accordingly <br/>
    `<connectionStrings>
       <add name="MovieLibrary" connectionString="Server=localhost;Database=MovieLibrary;User Id=sa;Password=;"
       providerName="System.Data.SqlClient" />
    </connectionStrings>`
-   These files are (from the repo root):
+   <br/> These files are (from the repo root):
     - MovieLibrary/MovieLibrary.Test/App.config
     - MovieLibrary/MovieLibrary.UI/Web.config
 3. Running the app will require IIS Express. If you plan to run the app from Visual Studio, you likely will have IIS
