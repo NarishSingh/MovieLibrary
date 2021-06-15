@@ -7,7 +7,12 @@ namespace MovieLibrary.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private IService _service = new ServiceImpl();
+        private IService _service;
+
+        public HomeController()
+        {
+            _service = new ServiceImpl();
+        }
 
         /// <summary>
         /// GET - index page displaying titles currently playing
