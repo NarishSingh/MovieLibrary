@@ -15,18 +15,18 @@ Tech stack - C# .Net Framework ASP.NET Web App
 Running the app:
 
 1. Install the database and stored procedures: in Microsoft SQL Server, ensure you are using your System Admin login and
-   are using Mixed authentication. The install script `DbEasyInstall.sql` has been combined and placed at the root of
-   the repo for your convenience. Running the script with define the database, create the necessary stored procedure for
-   CRUD, and create the sample data for backend testing
-2. Connect app to your db: you will need to put your password into 2 config files in the app for the backend to test and
-   run the code. In both cases, you will add your `Password` in the `connectionString` value of the configuration. Note
-   that by default system admin accounts are aliased 'sa', if you login differs you must update the `User Id` value
-   accordingly <br/>
+   are using Mixed authentication. The install script `DbEasyInstall.sql` combines all SQL scripts and has been placed
+   at the root of the repo for your convenience. Running the script with define the database, create the necessary
+   stored procedure for CRUD, and create the sample data for backend testing
+2. Connect app to your db: you will need to put your Microsoft SQL Server password for your system admin login into 2
+   config files in the app for the backend to test and run the code. In both cases, you will add your `Password` in
+   the `connectionString` value of the configuration. Note that by default system admin logins are aliased 'sa', if you
+   login differs you must update the `User Id` value accordingly <br/>
    `<connectionStrings>
-      <add name="MovieLibrary" connectionString="Server=localhost;Database=MovieLibrary;User Id=sa;Password=;"
-      providerName="System.Data.SqlClient" />
+   <add name="MovieLibrary" connectionString="Server=localhost;Database=MovieLibrary;User Id=sa;Password=;"
+   providerName="System.Data.SqlClient" />
    </connectionStrings>`
-   <br/> These files are (from the repo root):
+   <br/> These files are, from the repo root:
     - MovieLibrary/MovieLibrary.Test/App.config
     - MovieLibrary/MovieLibrary.UI/Web.config
 3. Running the app will require IIS Express. If you plan to run the app from Visual Studio, you likely will have IIS
