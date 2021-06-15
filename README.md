@@ -35,20 +35,20 @@ Running the app:
 4. Lastly, build the solution and run the app, and navigate to `http://localhost:5000/` to view the application
 
 Images
-![image](https://user-images.githubusercontent.com/62305841/122102986-0ed4d980-cde4-11eb-83cc-f169d5ef3f59.png)
 Index/Now Playing page, Jumbotron, Sticky Navbar
+![image](https://user-images.githubusercontent.com/62305841/122102986-0ed4d980-cde4-11eb-83cc-f169d5ef3f59.png)
 
-![image](https://user-images.githubusercontent.com/62305841/122103048-24e29a00-cde4-11eb-89eb-4d26f6f77d4a.png)
 Index/Now Playing page, Carousel
+![image](https://user-images.githubusercontent.com/62305841/122103048-24e29a00-cde4-11eb-89eb-4d26f6f77d4a.png)
 
-![image](https://user-images.githubusercontent.com/62305841/122103098-388e0080-cde4-11eb-9eb6-7fdc3d6bd0d9.png)
 Index/Now Playing page, Now Playing results table
+![image](https://user-images.githubusercontent.com/62305841/122103098-388e0080-cde4-11eb-9eb6-7fdc3d6bd0d9.png)
 
-![image](https://user-images.githubusercontent.com/62305841/122103134-43489580-cde4-11eb-90d5-89663eb21845.png)
 Search By Title results page, featuring top 3 matches, and results table
+![image](https://user-images.githubusercontent.com/62305841/122103134-43489580-cde4-11eb-90d5-89663eb21845.png)
 
-![image](https://user-images.githubusercontent.com/62305841/122103182-53f90b80-cde4-11eb-9a82-88531cce04d1.png)
 Movie Details page, with all info present, dropdown menu for links to trailers on youtube, like/dislike buttons
+![image](https://user-images.githubusercontent.com/62305841/122103182-53f90b80-cde4-11eb-9a82-88531cce04d1.png)
 
+Movie Details pages load dynamically, unreleased or canceled titles won't display missing info
 ![image](https://user-images.githubusercontent.com/62305841/122103264-6c692600-cde4-11eb-8442-0f7debd6d261.png)
-Movie Details pages load dynamically, unreleased or canceled titles won't display missing info 
