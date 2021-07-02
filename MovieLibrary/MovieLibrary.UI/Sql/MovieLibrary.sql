@@ -1,6 +1,7 @@
 ﻿USE master;
 GO
 
+-- PRODUCTION
 IF EXISTS(SELECT *
           FROM sys.databases
           WHERE name = 'MovieLibrary')
@@ -8,6 +9,16 @@ IF EXISTS(SELECT *
 GO
 
 CREATE DATABASE MovieLibrary;
+GO
+
+-- TEST
+IF EXISTS(SELECT *
+          FROM sys.databases
+          WHERE name = 'MovieLibraryTest')
+    DROP DATABASE MovieLibraryTest;
+GO
+
+CREATE DATABASE MovieLibraryTest;
 GO
 
 USE MovieLibrary;

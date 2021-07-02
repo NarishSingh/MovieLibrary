@@ -1,4 +1,4 @@
-﻿USE MovieLibrary;
+﻿USE MovieLibraryTest;
 GO
 
 IF EXISTS(
