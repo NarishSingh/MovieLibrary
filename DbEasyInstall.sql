@@ -1,7 +1,8 @@
--- CREATE DB
 USE master;
 GO
 
+-- *CREATE DB*
+-- PRODUCTION
 IF EXISTS(SELECT *
           FROM sys.databases
           WHERE name = 'MovieLibrary')
@@ -11,10 +12,21 @@ GO
 CREATE DATABASE MovieLibrary;
 GO
 
+-- TEST
+IF EXISTS(SELECT *
+          FROM sys.databases
+          WHERE name = 'MovieLibraryTest')
+    DROP DATABASE MovieLibraryTest;
+GO
+
+CREATE DATABASE MovieLibraryTest;
+GO
+
+-- *DDL*
+-- PRODUCTION
 USE MovieLibrary;
 GO
 
--- DDL
 IF EXISTS(SELECT *
           FROM sys.tables
           WHERE name = 'Movie')
@@ -28,8 +40,31 @@ CREATE TABLE Movie
     Likes      INT                            NOT NULL DEFAULT (0),
     Dislikes   INT                            NOT NULL DEFAULT (0)
 );
+GO
 
--- SAMPLE DATA AND DbReset STORED PROCEDURE FOR TESTING
+-- TEST
+USE MovieLibraryTest;
+GO
+
+IF EXISTS(SELECT *
+          FROM sys.tables
+          WHERE name = 'Movie')
+    DROP TABLE Movie;
+GO
+
+CREATE TABLE Movie
+(
+    MovieId    INT IDENTITY (1,1) PRIMARY KEY NOT NULL,
+    MovieTitle NVARCHAR(200)                  NOT NULL,
+    Likes      INT                            NOT NULL DEFAULT (0),
+    Dislikes   INT                            NOT NULL DEFAULT (0)
+);
+GO
+
+-- *SAMPLE DATA AND DbReset SP - TEST DB ONLY*
+USE MovieLibraryTest;
+GO
+
 IF EXISTS(
         SELECT *
         FROM INFORMATION_SCHEMA.ROUTINES
@@ -62,6 +97,9 @@ GO
 EXEC DbReset;
 
 -- STORED PROCEDURES
+USE MovieLibrary; -- PRODUCTION
+GO
+
 IF EXISTS(
         SELECT *
         FROM INFORMATION_SCHEMA.ROUTINES
@@ -105,7 +143,126 @@ GO
 IF EXISTS(
         SELECT *
         FROM INFORMATION_SCHEMA.ROUTINES
-        WHERE ROUTINE_NAME = 'MoveSelectByTitle'
+        WHERE ROUTINE_NAME = 'MovieSelectByTitle'
+    )
+    DROP PROCEDURE MovieSelectByTitle
+GO
+
+CREATE PROCEDURE MovieSelectByTitle(
+    @MovieTitle NVARCHAR(200)
+) AS
+BEGIN
+    SELECT *
+    FROM Movie
+    WHERE MovieTitle = @MovieTitle
+END
+GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MovieSelectAll'
+    )
+    DROP PROCEDURE MovieSelectAll
+GO
+
+CREATE PROCEDURE MovieSelectAll
+AS
+BEGIN
+    SELECT *
+    FROM Movie;
+END
+GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MovieUpdate'
+    )
+    DROP PROCEDURE MovieUpdate
+GO
+
+CREATE PROCEDURE MovieUpdate(
+    @MovieId INT,
+    @MovieTitle NVARCHAR(200),
+    @Likes INT,
+    @Dislikes INT
+) AS
+BEGIN
+    UPDATE Movie
+    SET MovieTitle = @MovieTitle,
+        Likes      = @Likes,
+        Dislikes   = @Dislikes
+    WHERE MovieId = @MovieId
+END
+GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MovieDelete'
+    )
+    DROP PROCEDURE MovieDelete
+GO
+
+CREATE PROCEDURE MovieDelete(
+    @MovieId INT
+) AS
+BEGIN
+    DELETE
+    FROM Movie
+    WHERE MovieId = @MovieId
+END
+GO
+
+-- TEST
+USE MovieLibraryTest;
+GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MovieInsert'
+    )
+    DROP PROCEDURE MovieInsert
+GO
+
+CREATE PROCEDURE MovieInsert(
+    @MovieId INT OUTPUT,
+    @MovieTitle NVARCHAR(200),
+    @Likes INT,
+    @Dislikes INT
+) AS
+BEGIN
+    INSERT INTO Movie(MovieTitle, Likes, Dislikes)
+    VALUES (@MovieTitle, @Likes, @Dislikes);
+
+    SET @MovieId = SCOPE_IDENTITY();
+END
+GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MovieSelectById'
+    )
+    DROP PROCEDURE MovieSelectById
+GO
+
+CREATE PROCEDURE MovieSelectById(
+    @MovieId INT
+) AS
+BEGIN
+    SELECT *
+    FROM Movie
+    WHERE MovieId = @MovieId;
+END
+GO
+
+IF EXISTS(
+        SELECT *
+        FROM INFORMATION_SCHEMA.ROUTINES
+        WHERE ROUTINE_NAME = 'MovieSelectByTitle'
     )
     DROP PROCEDURE MovieSelectByTitle
 GO
